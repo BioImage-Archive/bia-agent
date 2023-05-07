@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "bia-agent"
+version = "0.1.0"
+description = ""
+authors = ["Matthew Hartley <matthewh@ebi.ac.uk>"]
+readme = "README.md"
+packages = [{include = "bia_agent"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+bia-rembi-models = "^0.1.0"
+ruamel-yaml = "^0.17.22"
+typer = "^0.9.0"
+requests = "^2.30.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
