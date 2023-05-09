@@ -1,3 +1,5 @@
+from typing import Optional
+
 from bia_rembi_models.study import Study
 from bia_rembi_models.sample import Biosample
 from bia_rembi_models.specimen import Specimen
@@ -7,7 +9,7 @@ from bia_rembi_models.study_component import StudyComponent
 from bia_rembi_models.correlation import ImageCorrelation
 
 from .biostudies import Attribute, Section, Submission, Link
-from .rembi import REMBIContainer
+from .rembi import REMBIContainer, REMBIAssociation
 
 VERSION = "1.0.0"
 
@@ -363,6 +365,7 @@ def correlation_to_pagetab_section(correlation: ImageCorrelation, suffix=1) -> S
 
     return correlation_section
 
+
 def study_component_to_pagetab_section(study_component: StudyComponent, suffix=1) -> Section:
 
     study_component_section = Section(
@@ -383,9 +386,13 @@ def study_component_to_pagetab_section(study_component: StudyComponent, suffix=1
     return study_component_section
 
 
-def rembi_container_to_pagetab(container: REMBIContainer) -> Submission:
+def rembi_container_to_pagetab(container: REMBIContainer, root_path: Optional[str]) -> Submission:
+    """Convert a REMBI Container object into a PageTab submission."""
 
     submission = rembi_study_to_pagetab_submission(container.study)
+
+    if root_path:
+        submission.attributes.append(Attribute(name="RootPath", value=root_path))
 
     def rembi_objects_to_pagetab_sections(conversion_func, objects_dict):
         sections = [
@@ -406,3 +413,42 @@ def rembi_container_to_pagetab(container: REMBIContainer) -> Submission:
     )
 
     return submission
+
+
+def rembi_association_to_pagetab_section(association: REMBIAssociation) -> Section:
+
+    association_section = Section(
+        type="Associations",
+        attributes=[
+            Attribute(name="Biosample", value=association.biosample_id),
+            Attribute(name="Specimen", value=association.specimen_id),
+            Attribute(name="Image acquisition", value=association.acquisition_id)
+        ]
+    )
+
+    return association_section
+
+
+def create_study_component(name: str, description: str, association: REMBIAssociation, file_list_fname: str, suffix=1):
+
+    study_component_section = Section(
+        type="Study Component",
+        accno=f"Study Component-{suffix}",
+        attributes=[
+            Attribute(
+                name="Name",
+                value=name
+            ),
+            Attribute(
+                name="Description",
+                value=description
+            ),
+            Attribute(
+                name="File List",
+                value=file_list_fname
+            )
+        ],
+        subsections=[rembi_association_to_pagetab_section(association)]
+    )
+    
+    return study_component_section
