@@ -88,7 +88,7 @@ def rembi_publication_to_pagetab_section(pub) -> Section:
     return pub_section
 
 
-def rembi_study_to_pagetab_submission(rembi_study: Study, collection="BioImages") -> Submission:
+def rembi_study_to_pagetab_submission(rembi_study: Study, accession_id: Optional[str], collection: str = "BioImages") -> Submission:
 
     org_map = generate_org_map(rembi_study)
 
@@ -166,7 +166,7 @@ def rembi_study_to_pagetab_submission(rembi_study: Study, collection="BioImages"
 
     global VERSION
     submission = Submission(
-        accno=None,
+        accno=accession_id,
         attributes=[
             Attribute(name="Title", value=rembi_study.title),
             Attribute(name="ReleaseDate", value=rembi_study.private_until_date.strftime("%Y-%m-%d")),
@@ -386,10 +386,10 @@ def study_component_to_pagetab_section(study_component: StudyComponent, suffix=1
     return study_component_section
 
 
-def rembi_container_to_pagetab(container: REMBIContainer, root_path: Optional[str]) -> Submission:
+def rembi_container_to_pagetab(container: REMBIContainer, accession_id: Optional[str], root_path: Optional[str]) -> Submission:
     """Convert a REMBI Container object into a PageTab submission."""
 
-    submission = rembi_study_to_pagetab_submission(container.study)
+    submission = rembi_study_to_pagetab_submission(container.study, accession_id=accession_id)
 
     if root_path:
         submission.attributes.append(Attribute(name="RootPath", value=root_path))
@@ -452,3 +452,27 @@ def create_study_component(name: str, description: str, association: REMBIAssoci
     )
     
     return study_component_section
+
+
+def create_annotations_section(name: str, description: str, file_list_fname: str, suffix=1):
+
+    annotations = Section(
+        type="Annotations",
+        accno=f"Annotations-{suffix}",
+        attributes=[
+            Attribute(
+                name="Title",
+                value=name
+            ),
+            Attribute(
+                name="Annotation overview",
+                value=description
+            ),
+            Attribute(
+                name="File List",
+                value=file_list_fname
+            )
+        ]
+    )
+
+    return annotations

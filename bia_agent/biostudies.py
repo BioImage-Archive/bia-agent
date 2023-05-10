@@ -67,7 +67,7 @@ class Section(BaseModel):
     type: str
     accno: Optional[str]
     attributes: List[Attribute] = []
-    subsections: List["Section"] = []
+    subsections: List[Union["Section", List["Section"]]] = []
     links: List[Link] = []
     files: List[Union[File, List[File]]] = []
 
