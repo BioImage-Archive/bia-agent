@@ -83,6 +83,7 @@ def generate_bst_submission(bia_submission: BIASubmission, accession_id: Optiona
 
     root_path = f"{bia_submission.submission_dirpath.name}/files"
     bst_submission = rembi_container_to_pagetab(rembi_container, accession_id=accession_id, root_path=root_path)
+    bia_submission.create_file_structure()
 
     if skip_filelists:
         return bst_submission
