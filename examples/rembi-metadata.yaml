@@ -1,0 +1,55 @@
+study: 
+  title: "Embryonic mice ultrasound volumes with body and brain volume segmentation masks"
+  description: "A dataset consisting of 231 embryonic mice High Frequency Ultrasound volumes which were acquired in utero and in vivo from pregnant mice, together with body and brain volume segmentation masks."
+  private_until_date: 2023-05-10
+  keywords:
+    - Image segmentation
+    - high-frequency ultrasound
+    - mouse embryo
+    - volumetric deep learning
+  authors:
+    - first_name: "Ziming"
+      last_name: "Qiu"
+      role: submitter
+      affiliation:
+        name: "Department of Electrical and Computer Engineering"
+        address: "New York University, New York, USA"
+    - first_name: "Matthew"
+      last_name: "Hartley"
+      role: data curator
+      affiliation:
+        name: "European Molecular Biology Laboratory, European Bioinformatics Institute"
+  publications:
+    - title: "DEEP MOUSE: AN END-TO-END AUTO-CONTEXT REFINEMENT FRAMEWORK FOR BRAIN VENTRICLE & BODY SEGMENTATION IN EMBRYONIC MICE ULTRASOUND VOLUMES."
+      authors: "Qiu Z, Das W, Wang C, Langerman J, Nair N, Aristizábal O, Mamou J, Turnbull DH, Ketterling JA, Wang Y"
+      doi: https://doi.org/10.1109/isbi45749.2020.9098387
+      year: 2020
+      pubmed_id: PMC7768981
+  links:
+    - link_url: https://www.ebi.ac.uk/biostudies/bioimages/studies/S-BSST401
+      link_description: Original submission (not curated)
+  rembi_version: '1.5'
+biosamples:
+  In utero mouse embryos:
+    organism:
+      scientific_name: mus musculus
+      common_name: mouse
+      ncbi_taxon: NCBI:txid10090
+    biological_entity: mouse embryo volumes
+    description: mouse embryo volumes which were acquired in utero and in vivo from pregnant mice (10-14.5 days after mating)
+specimens:
+  HFU sample preparation:
+    sample_preparation: Unknown
+acquisitions:
+  Ultrasound Image Acquisition:
+    imaging_method: 
+      value: Echography
+      ontology_id: http://edamontology.org/topic_3954
+      ontology_name: EDAM
+    imaging_instrument: High frequency ultrasound 5-element 40-MHz annular array
+    image_acquisition_parameters: The dimensions of the HFU volumes vary from 150 x 161 x 81 to 210 x 281 x 282 voxels and the voxel size is 50 x 50 x 50 μm
+associations:
+  experiment1:
+    biosample_id: In utero mouse embryos
+    specimen_id: HFU sample preparation
+    acquisition_id: Ultrasound Image Acquisition
