@@ -7,6 +7,9 @@ import typer
 from .files import FileCollection
 from .submission import submission_from_dirpath, generate_bst_submission, generate_filelists
 from .transfer import copy_single_file, copy_all, verify
+from .rembi import parse_yaml
+from .rembi2pagetab import rembi_container_to_pagetab
+
 
 logger = logging.getLogger("bia-agent")
 logging.basicConfig(level=logging.INFO)
@@ -103,6 +106,16 @@ def show_pagetab(submission_dirpath: pathlib.Path, accession_id: str = "", skip_
     bst_submission = generate_bst_submission(bia_submission, accession_id=accession_id, skip_filelists=skip_filelists)
 
     print(bst_submission.as_tsv())
+
+
+@app.command()
+def rembi_to_pagetab(rembi_fpath: pathlib.Path, accession_id: str):
+    rembi_container = parse_yaml(rembi_fpath)
+
+    bst_submission = rembi_container_to_pagetab(rembi_container, accession_id=accession_id, root_path=None)
+
+    print(bst_submission.as_tsv())
+
 
 
 if __name__ == "__main__":
