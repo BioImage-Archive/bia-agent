@@ -4,6 +4,7 @@ from typing import Optional
 
 import typer
 
+from .biostudies import Submission
 from .files import FileCollection
 from .submission import submission_from_dirpath, generate_bst_submission, generate_filelists
 from .transfer import copy_single_file, copy_all, verify
@@ -106,6 +107,13 @@ def show_pagetab(submission_dirpath: pathlib.Path, accession_id: str = "", skip_
     bst_submission = generate_bst_submission(bia_submission, accession_id=accession_id, skip_filelists=skip_filelists)
 
     print(bst_submission.as_tsv())
+
+
+@app.command()
+def check_pagetab_json(json_fpath: pathlib.Path):
+
+    submission = Submission.parse_file(json_fpath)
+    print(submission)
 
 
 @app.command()
