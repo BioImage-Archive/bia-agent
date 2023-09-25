@@ -111,9 +111,11 @@ def show_pagetab(submission_dirpath: pathlib.Path, accession_id: str = "", skip_
 
 @app.command()
 def check_pagetab_json(json_fpath: pathlib.Path):
+    """Check pagetab JSON validity by trying to parse it."""
 
     submission = Submission.parse_file(json_fpath)
-    print(submission)
+
+    print(submission.as_tsv())
 
 
 @app.command()
