@@ -1,0 +1,68 @@
+study: 
+  title: # Required # This will be displayed when search results including your data are shown
+  description: # Required# Overall description of the dataset, can be a publication abstract.
+  private_until_date: # Required # Day in the YYYY-mm-dd format by which the submission will be private. You can use a date far in the future initially and change it later
+  keywords: # Required # Key words relating to the study - add multiple keywords in separate lines as shown below
+    - Keyword 1
+    - Keyword 2
+  authors: # Add more authors by repeating the block below
+    - first_name: # Required
+      last_name: # Required
+      email: # Optional # email address for an author
+      role: # Required # Role of the author when creating the dataset, e.g. submitter, annotator, corresponding author
+      orcid: # Optional # ORCID unique identifier for an author
+      affiliation:
+        name: # Required # The name of the organisation.
+        address: # Optional # The address of the organisation.
+  funding: 
+    funding_statement: # Optional # A description of how the data generation was funded
+    grant_references: # Add more grant references by repeating the block below
+      - funder: # Optional # The funding body providing support
+        identifier: # Optional # Grant identifier 
+  publications: 
+    - title: # Optional # Title of associated publication.
+      authors: # Optional # Authors of associated publication.
+      doi: # Optional # Digital Object Identifier (DOI).
+      year: # Optional # Year of publication.
+      pubmed_id: # Optional # PubMed identifier for the publication.
+  links: # Add more links by repeating the block below. Please include here any AI models trained with your dataset
+    - link_url: # Optional # URL of relevant link 
+      link_description: # Optional # The type of the link.
+  acknowledgements: # Optional # Any people or groups that should be acknowledged as part of the dataset
+  rembi_version: '1.5' # Do not edit this
+biosamples: # Add more biosamples by repeating the block below.
+  First biosample: # You can edit this to be more descriptive e.g. in utero mouse embryos, stage 7 fruit fly embryos. But you will need to edit the name section in the associations section below 
+    organism:
+      scientific_name: # Required # Scientific name. e.g. Drosophila melanogaster 
+      common_name:  # Optional # Common name. e.g. fruit fly
+      ncbi_taxon: # Required # Leave blank if not known. e.g NCBI:txid7227 
+    biological_entity: # Required # What is being imaged. e.g. amnioserosa
+    description: # Optional # High level description of sample.
+specimens: # Add more specimens by repeating the block below.
+  First specimen: # You can edit this to be more descriptive e.g. HFU sample preparation, embryo fixation and immunostaining. But you will need to edit the name section in the associations section below 
+    sample_preparation: # Required # How the sample was prepared for imaging.
+acquisitions: # Add more acqusitions by repeating the block below.
+  First acquisition: # You can edit this to be more decriptive e.g. confocal microscopy acquisition,  Ultrasound Image Acquisition. But you will need to edit the name section in the associations section below 
+    imaging_method: 
+      value: # Required # What method was used to generate the images (e.g. bright-field microscopy)
+      ontology_id: # Required # e.g. http://purl.obolibrary.org/obo/FBbi_00000243 - Leave blank if not known
+      ontology_name: # Required # e.g. Biological Imaging Methods Ontology (FBbi) - Leave blank if not known
+    imaging_instrument: # Required # Description of the instrument used to capture the images.
+    image_acquisition_parameters: # Required # How the images were acquired, including instrument settings/parameters.
+annotations:
+  Annotations:  # You can edit this to be more decriptive e.g. confocal microscopy acquisition,  Ultrasound Image Acquisition. But you will need to edit the name section in the associations section below 
+    annotation_overview: # Required # Short descriptive summary indicating the type of annotation and how it was generated 
+    annotation_method: # Required # Description of how the annotations where created. For example, were the annotations crowdsourced or expertly annotated, produced by  a human or software, what software was used, when were the annotations created, protocols used for consensus and quality assurance
+    annotation_confidence_level: # Optional # Confidence on annotation accuracy (e.g., self-reported confidence, the variance among several annotators, or the number of years of experience of the annotator)
+    annotation_criteria: # Optional # Rules used to generate annotations (e.g. only nuclei in focus were segmented)
+    annotation_coverage: # Optional # If the dataset is not completely annotated, which images from the dataset were annotated, and what percentage of the data has been annotated from what is available?
+study_component: # Add more study components by repeating the block below (change title to 'Study component 2', etc.). You will need an associations block (below) per study component
+  Study component 1:  
+    name: # Required # The name of your study component
+    description: # Required # An explanation of your study component
+    rembi_version: '1.5' # Do not edit this
+associations: # Add more associations by repeating the block below. You will need an associations block per study component, use the same titles you used for each study component and write them in the same order
+  Study componenent 1:
+    biosample_id: First biosample # Required #  Edit the name of the sections that belong to each study component if you changed them above
+    specimen_id: First specimen # Required 
+    acquisition_id: First acquisition # Required 

@@ -10,6 +10,7 @@ from .submission import submission_from_dirpath, generate_bst_submission, genera
 from .transfer import copy_single_file, copy_all, verify
 from .rembi import parse_yaml
 from .rembi2pagetab import rembi_container_to_pagetab
+from .mifa2pagetab import rembi_mifa_container_to_pagetab, mifa_container_to_pagetab
 
 
 logger = logging.getLogger("bia-agent")
@@ -126,6 +127,21 @@ def rembi_to_pagetab(rembi_fpath: pathlib.Path, accession_id: str):
 
     print(bst_submission.as_tsv())
 
+@app.command()
+def rembi_mifa_to_pagetab(rembi_mifa_fpath: pathlib.Path, accession_id: str):
+    rembi_mifa_container = parse_yaml(rembi_mifa_fpath)
+
+    bst_submission = rembi_mifa_container_to_pagetab(rembi_mifa_container, accession_id=accession_id, root_path=None)
+    
+    print(bst_submission.as_tsv())
+
+@app.command()
+def mifa_to_pagetab(mifa_fpath: pathlib.Path, accession_id: str):
+    mifa_container = parse_yaml(mifa_fpath)
+
+    bst_submission = mifa_container_to_pagetab(mifa_container, accession_id=accession_id, root_path=None)
+    
+    print(bst_submission.as_tsv())
 
 
 if __name__ == "__main__":
