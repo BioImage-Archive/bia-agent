@@ -18,6 +18,8 @@ requests = "^2.30.0"
 fs = "^2.4.16"
 pandas = "^2.0.1"
 python-dotenv = "^1.0.0"
+bia_faim_models = { git = "https://github.com/BioImage-Archive/bia-faim-models.git", branch = "main" }
+# bia-rembi-models = { git = "https://github.com/BioImage-Archive/bia-rembi-models.git", branch = "main" }
 
 
 [build-system]

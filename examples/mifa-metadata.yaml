@@ -1,0 +1,56 @@
+study: 
+  title: 3D cell shape of Drosophila Wing Disc
+  description: Individual 3D cell shapes of Drosophila Wing Disc 
+  private_until_date: 2024-08-02
+  keywords: 
+    - 3D
+    - Drosophila
+    - CellShape
+    - Packing
+    - WingDisc
+  authors: 
+    - first_name: Giulia 
+      last_name: Paci 
+      email: g.paci@ucl.ac.uk
+      role: data acquisition, data curator 
+      orcid: 0000-0003-0565-4356
+      affiliation:
+        name: LMCB, University College London 
+        address: London, UK 
+    - first_name: Ines 
+      last_name: Fernandez Mosquera 
+      role: data acquisition, data annotator, data curator 
+      affiliation:
+        name: LMCB, University College London 
+        address: London, UK 
+    - first_name: Pablo 
+      last_name: Vicente Munuera 
+      email: p.munuera@ucl.ac.uk
+      role: submitter
+      orcid: 0000-0001-5402-7637
+      affiliation:
+        name: LMCB, University College London 
+        address: London, UK 
+  publications:
+    - title: "DEEP MOUSE: AN END-TO-END AUTO-CONTEXT REFINEMENT FRAMEWORK FOR BRAIN VENTRICLE & BODY SEGMENTATION IN EMBRYONIC MICE ULTRASOUND VOLUMES."
+      authors: "Qiu Z, Das W, Wang C, Langerman J, Nair N, Aristizábal O, Mamou J, Turnbull DH, Ketterling JA, Wang Y"
+      doi: https://doi.org/10.1109/isbi45749.2020.9098387
+      year: 2020
+      pubmed_id: PMC7768981
+  funding: 
+    funding_statement: "Example funding statement"
+    grant_references:
+      - funder: EMBO 
+        identifier: ALT-XXX
+  links: 
+    - link_url: https://www.ucl.ac.uk/lmcb/users/yanlan-mao 
+      link_description: Lab website
+  acknowledgements: Example acknowledgements
+  rembi_version: '1.5' 
+annotations:
+  Segmentation masks:
+    annotation_overview: Segmentation label of individual cells of Drosophila wing disc curated by experts from a model prediction
+    annotation_method: Cellpose (a generalist algorithm for cell segmentation) was used to predict the annotations. Then, using napari,  images were corrected. 
+    annotation_confidence_level: Curators had 15 and 20 years of experience working in cancer pathology
+    annotation_criteria: Individual cells were labelled in 3D
+    annotation_coverage: 100% of the data were annotated
