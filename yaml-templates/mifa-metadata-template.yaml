@@ -1,6 +1,6 @@
 study: 
   title: # Required # This will be displayed when search results including your data are shown
-  description: # Required# Overall description of the dataset, can be a publication abstract.
+  description: # Required # Overall description of the dataset, can be a publication abstract.
   private_until_date: # Required # Day in the YYYY-mm-dd format by which the submission will be private. You can use a date far in the future initially and change it later
   keywords: # Required # Key words relating to the study - add multiple keywords in separate lines as shown below
     - Keyword 1
