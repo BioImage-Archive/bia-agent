@@ -18,6 +18,7 @@ requests = "^2.30.0"
 fs = "^2.4.16"
 pandas = "^2.0.1"
 python-dotenv = "^1.0.0"
+pytest = "^7.4.3"
 
 
 [build-system]
