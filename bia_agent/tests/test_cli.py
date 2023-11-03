@@ -13,3 +13,16 @@ def test_rembi(rembi_file_path: str, accession_id: str):
     result = runner.invoke(app, ["rembi-to-pagetab", rembi_file_path, accession_id])
     assert result.exit_code == 0
     assert result.stdout is not None  # Ensure some output is produced
+    
+
+@pytest.mark.parametrize(
+    "rembi_file_path, accession_id",
+    [
+        ("examples/mifa-metadata.yaml","S-BIADXX"),
+    ],
+)
+def test_rembi_mifa_to_pagetab(rembi_file_path: str, accession_id: str):
+    result = runner.invoke(app, ["rembi-mifa-to-pagetab",
+                                 rembi_file_path,accession_id])
+    assert result.exit_code == 0
+    assert result.stdout is not None  # Ensure some output is produced
