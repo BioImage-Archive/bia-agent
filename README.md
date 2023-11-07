@@ -19,11 +19,11 @@ Converting REMBI with MIFA annotations YAML to PageTab
 
 Using poetry:
 
-    poetry run bia-agent rembi-mifa-to-pagetab examples/rembi-metadata-with-mifa.yaml
+    poetry run bia-agent rembi-mifa-to-pagetab examples/rembi-metadata-with-mifa.yaml S-BIADXXX
 
 Converting MIFA annotations YAML to PageTab
 -------------------------------------------
 
 Using poetry:
 
-    poetry run bia-agent rembi-mifa-to-pagetab examples/mifa-metadata.yaml
+    poetry run bia-agent rembi-mifa-to-pagetab examples/mifa-metadata.yaml S-BIADXXX
