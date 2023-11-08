@@ -51,7 +51,7 @@ def rembi_author_to_pagetab_section(author, org_map):
     name_attr = Attribute(name="Name", value=full_name)
     org_attr = Attribute(name="affiliation", value=org_map[author.affiliation], reference=True)
 
-    author_attributes = [name_attr, org_attr]
+    author_attributes = [name_attr]
 
     # email_attr = Attribute(name="Email", value=author.email)
     # role_attr = Attribute(name="Role", value=author.role)
@@ -60,6 +60,8 @@ def rembi_author_to_pagetab_section(author, org_map):
     append_if_not_none(author_attributes, "Email", author.email)
     append_if_not_none(author_attributes, "Role", author.role)
     append_if_not_none(author_attributes, "ORCID", author.orcid)
+
+    author_attributes.append(org_attr)
 
     author_section = Section(
         type="author",
@@ -358,7 +360,7 @@ def correlation_to_pagetab_section(correlation: ImageCorrelation, suffix=1) -> S
 
     return correlation_section
 
-def study_component_to_pagetab_section(study_component: StudyComponent, suffix=1) -> Section:
+def study_component_to_pagetab_section(study_component: StudyComponent, associations: REMBIAssociation, suffix=1) -> Section:
 
     study_component_section = Section(
         type="Study Component",
@@ -372,7 +374,8 @@ def study_component_to_pagetab_section(study_component: StudyComponent, suffix=1
                 name="Description",
                 value=study_component.description
             )
-        ]
+        ],
+        subsections=[rembi_association_to_pagetab_section(associations)]
     )
     
     return study_component_section
