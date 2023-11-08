@@ -6,7 +6,9 @@ from pydantic import BaseModel, Field
 from ruamel.yaml import YAML
 
 from .files import FileCollection
-from .rembi2pagetab import create_study_component, rembi_container_to_pagetab, create_annotations_section
+from .rembi2pagetab import rembi_container_to_pagetab
+from .utils import (create_study_component,
+                    create_annotations_section)
 from .rembi import parse_yaml
 
 
