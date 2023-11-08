@@ -38,29 +38,9 @@ def mifa_annotations_to_pagetab_section(annotations: Annotations, title: str, su
             )
         ])
     
-    if annotations.annotation_criteria:
-        annotations_section.attributes.append(
-            Attribute(
-                name="Annotation criteria",
-                value=annotations.annotation_criteria
-            )
-        )
-
-    if annotations.annotation_coverage:
-        annotations_section.attributes.append(
-            Attribute(
-                name="Annotation coverage",
-                value=annotations.annotation_coverage
-            )
-        )
-    
-    if annotations.annotation_confidence_level:
-        annotations_section.attributes.append(
-            Attribute(
-                name="Annotation confidence level",
-                value=annotations.annotation_confidence_level
-            )
-        )
+    append_if_not_none(annotations_section.attributes, "Annotation confidence level", annotations.annotation_confidence_level)
+    append_if_not_none(annotations_section.attributes, "Annotation criteria", annotations.annotation_criteria)
+    append_if_not_none(annotations_section.attributes, "Annotation coverage", annotations.annotation_coverage)
     
     return annotations_section
 
