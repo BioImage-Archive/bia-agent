@@ -1,6 +1,6 @@
 from typing import Optional
 
-from bia_faim_models.schema.bia_faim_models_pydantic import Annotations
+from bia_faim_models.schema import Annotations
 
 from .biostudies import Attribute, Section, Submission
 from .rembi import REMBIContainer

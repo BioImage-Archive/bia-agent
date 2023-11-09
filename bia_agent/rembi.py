@@ -6,7 +6,7 @@ from bia_rembi_models.study import Study
 from bia_rembi_models.sample import Biosample
 from bia_rembi_models.specimen import Specimen
 from bia_rembi_models.acquisition import ImageAcquisition
-from bia_faim_models.schema.bia_faim_models_pydantic import Annotations
+from bia_faim_models.schema import Annotations
 from bia_rembi_models.study_component import StudyComponent
 
 
