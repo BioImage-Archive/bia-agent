@@ -1,0 +1,81 @@
+study: 
+  title: An annotated fluorescence image dataset for training nuclear segmentation methods
+  description: >- 
+    This dataset contains annotated fluorescent nuclear images of normal or cancer cells from different tissue origins and sample preparation types, 
+    and can be used to train machine-learning based nuclear image segmentation algorithms. It consists of 79 expert-annotated fluorescence images 
+    of immuno and DAPI stained samples containing 7813 nuclei in total. In addition, the dataset is heterogenous in aspects such as type of preparation, 
+    imaging modality, magnification, signal-to-noise ratio and other technical aspects. Relevant parameters, e.g. diagnosis, magnification, 
+    signal-to-noise ratio and modality with respect to the type of preparation are provided in the file list. The images are derived from one Schwann cell stroma-rich
+    tissue (from a ganglioneuroblastoma) cryosection (10 images/2773 nuclei), seven neuroblastoma (NB) patients (19 images/931 nuclei), one Wilms patient (1 image/102 nuclei), 
+    two NB cell lines (CLB-Ma, STA-NB10) (8 images/1785 nuclei) and a human keratinocyte cell line (HaCaT) (41 images/2222 nuclei).
+  private_until_date: 2024-08-02
+  keywords: 
+    - AI
+    - segmentation
+    - nucleus
+    - fluorescence
+  authors: 
+    - first_name: Sabine
+      last_name: Taschner-Mandl
+      email: sabine.taschner@ccri.at
+      role: conceptualization, data acquisition
+      orcid: 0000-0002-1439-5301
+      affiliation:
+        name: Children's Cancer Research Institute
+        address: Zimmermannplatz 10, 1090 Vienna, Austria
+    - first_name: Florian 
+      last_name: Kromp
+      role: conceptualization, data acquisition, data annotation, data analysis
+      orcid: 0000-0003-4557-5652
+      affiliation:
+        name: Children's Cancer Research Institute
+        address: Zimmermannplatz 10, 1090 Vienna, Austria
+  publications:
+    - title: An annotated fluorescence image dataset for training nuclear segmentation methods
+      authors: >- 
+        Florian Kromp, Eva Bozsaky, Fikret Rifatbegovic, Lukas Fischer, Magdalena Ambros, Maria Berneder, 
+        Tamara Weiss, Daria Lazic, Wolfgang Dörr, Allan Hanbury, Klaus Beiske, Peter F. Ambros, Inge M. Ambros & Sabine Taschner-Mandl
+      doi: https://doi.org/10.1038/s41597-020-00608-w
+      year: 2020
+      pubmed_id: PMC7419523
+  funding: 
+    funding_statement: >- 
+      This work was facilitated by an EraSME grant (project TisQuant) under the grant no. 844198 and by a COIN grant (project VISIOMICS)
+      under the grant no. 861750, both grants kindly provided by the Austrian Research Promotion Agency (FFG), and the St. Anna Kinderkrebsforschung. 
+      Partial funding was further provided by BMK, BMDW, and the Province of Upper Austria in the frame of the COMET Programme managed by FFG.
+    grant_references:
+      - funder: EraSME
+        identifier: 844198
+  links: 
+    - link_url: https://github.com/perlfloccri/NuclearSegmentationPipeline
+      link_description: Deep Learning models trained with this dataset
+  acknowledgements: We thank Professor Josiah Carberry for useful discussions
+  rembi_version: '1.5' 
+annotations:
+  Segmentation masks:
+    annotation_overview: Segmentations masks of human cell nuclei curated by experts from a model prediction 
+    annotation_method: >- 
+      Nuclei image annotation was performed by students and expert biologists trained by a disease expert. 
+      To accelerate the time consuming process of image annotation, a machine learning-based framework (MLF) was utilized supporting 
+      the process of annotation by learning characteristics of annotation in multiple steps. The MLF annotations result in a coarse annotation 
+      of nuclear contours and have to be refined to serve as ground truth annotation. Therefore, annotated images were exported as 
+      support vector graphic (SVG) files and imported into Adobe Illustrator (AI) CS6. AI enables the visualization of annotated nuclei as polygons 
+      overlaid on the raw nuclear image and provides tools to refine the contours of each nucleus. An expert biologist and disease expert carefully curated 
+      all images by refining polygonal contours and by removing polygons or adding them, if missing. Finally, an expert pathologist was consulted 
+      to revise all image annotations and annotations were curated according to the pathologist's suggestions. In cases where decision finding was difficult, 
+      a majority vote including all experts' suggestions was considered and annotations were corrected accordingly. 
+      Images were exported and converted to Tagged Image File Format (TIFF) files, serving as nuclear masks in the ground truth dataset. 
+      To set a baseline for machine learning-based image segmentation methods and to validate the proposed dataset, 25 nuclei were randomly sampled from 
+      the ground truth annotations for each of the classes, marked on the raw images and presented to two independent experts for image annotation. 
+      Annotation was carried out by a biology expert with long-standing experience in nuclear image annotation, further called annotation expert, and a biologist 
+      with experience in cell morphology and microscopy, further called expert biologist. Nuclei were annotated using SVG-files and Adobe illustrator. 
+      The single-nuclei annotations, described as single-cell annotations within the dataset, can be downloaded along with the dataset.
+    annotation_confidence_level: Curators had between 10 and 15 years of experience in cancer pathology
+    annotation_criteria: >- 
+      "The annotation of nuclei in tissue sections or tumor touch imprints is challenging and may not be unambiguous due to out-of-focus light or nuclei, 
+      damaged nuclei or nuclei presenting with modified morphology due to the slide preparation procedure. We defined the following criteria to annotate 
+      nuclear images: Only intact nuclei are annotated, even if the nuclear intensity is low in comparison to all other nuclei present. Nuclei have to be in focus. 
+      If parts of a nucleus are out of focus, only the part of the nucleus being in focus is annotated. Nuclear borders have to be annotated as exact as resolution 
+      and blurring allows for. Nuclei are not annotated if their morphology was heavily changed due to the preparation procedure. 
+      Nuclei from dividing cells are annotated as one nucleus unless clear borders can be distinguished between the resulting new nuclei."
+    annotation_coverage: All the images in the dataset were annotated
