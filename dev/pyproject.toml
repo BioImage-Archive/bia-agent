@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "bia-agent"
+version = "0.1.0"
+description = ""
+authors = ["Matthew Hartley <matthewh@ebi.ac.uk>"]
+readme = "README.md"
+packages = [{include = "bia_agent", from="../"}]
+
+[tool.poetry.scripts]
+bia-agent = "bia_agent.cli:app"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+bia-rembi-models = "^0.1.0"
+ruamel-yaml = "^0.17.22"
+typer = "^0.9.0"
+requests = "^2.30.0"
+fs = "^2.4.16"
+pandas = "^2.0.1"
+python-dotenv = "^1.0.0"
+pytest = "^7.4.3"
+bia-mifa-models = { path = "bia-mifa-models", develop = true }
+# bia-rembi-models = { git = "https://github.com/BioImage-Archive/bia-rembi-models.git", branch = "main" }
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
