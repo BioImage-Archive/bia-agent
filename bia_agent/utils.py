@@ -7,6 +7,7 @@ from bia_rembi_models.acquisition import ImageAcquisition
 from bia_rembi_models.analysis import ImageAnalysis
 from bia_rembi_models.study_component import StudyComponent
 from bia_rembi_models.correlation import ImageCorrelation
+from bia_faim_models.schema import Annotations, Version
 
 from .biostudies import Attribute, Section, Submission, Link
 from .rembi import REMBIAssociation
@@ -440,3 +441,52 @@ def create_annotations_section(name: str, description: str, file_list_fname: str
 
     return annotations
 
+def mifa_annotations_to_pagetab_section(annotations: Annotations, version: Version, title: str, suffix=1) -> Section:
+
+    annotations_section = Section(
+        type="Annotations",
+        accno=f"Annotations-{suffix}",
+        attributes=[
+            Attribute(
+                name="Title",
+                value=title
+            ),
+            Attribute(
+                name="Annotation overview",
+                value=annotations.annotation_overview
+            ),
+            Attribute(
+                name="Annotation method",
+                value=annotations.annotation_method
+            )
+        ],
+        subsections=[mifa_version_to_pagetab_section(version)]
+    )
+    
+    append_if_not_none(annotations_section.attributes, "Annotation confidence level", annotations.annotation_confidence_level)
+    append_if_not_none(annotations_section.attributes, "Annotation criteria", annotations.annotation_criteria)
+    append_if_not_none(annotations_section.attributes, "Annotation coverage", annotations.annotation_coverage)
+    
+
+    return annotations_section
+
+def mifa_version_to_pagetab_section(version: Version) -> Section:
+
+    #print(version.timestamp)
+    #print(type(version.timestamp))
+    #dt=version.timestamp.strftime("%Y-%m-%d %H:%M:%S")
+    #print(dt)
+    #print(type(dt))
+
+    version_section = Section(
+        type="Version",
+        attributes=[
+            Attribute(name="Annotation version", value=version.version),
+            Attribute(name="Version timestamp", value=version.timestamp)
+        ]
+    )
+
+    append_if_not_none(version_section.attributes, "Version changes", version.changes)
+    append_if_not_none(version_section.attributes, "Previous version", version.previous_version)
+
+    return version_section
