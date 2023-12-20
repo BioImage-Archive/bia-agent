@@ -19,7 +19,7 @@ fs = "^2.4.16"
 pandas = "^2.0.1"
 python-dotenv = "^1.0.0"
 pytest = "^7.4.3"
-bia_faim_models = { git = "https://github.com/BioImage-Archive/bia-faim-models.git", branch = "v1.1.1"}
+bia_mifa_models = { git = "https://github.com/BioImage-Archive/bia-mifa-models.git", branch = "v1.1.5"}
 # bia-rembi-models = { git = "https://github.com/BioImage-Archive/bia-rembi-models.git", branch = "main" }
 
 
