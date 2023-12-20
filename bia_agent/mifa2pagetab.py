@@ -1,6 +1,6 @@
 from typing import Optional
 
-from .biostudies import Attribute, Section, Submission
+from .biostudies import Attribute, Submission
 from .rembi import REMBIContainer
 
 from .utils import (rembi_study_to_pagetab_submission,
@@ -8,8 +8,7 @@ from .utils import (rembi_study_to_pagetab_submission,
                     specimen_to_pagetab_section,
                     acquisition_to_pagetab_section,
                     study_component_to_pagetab_section,
-                    mifa_annotations_to_pagetab_section,
-                    mifa_version_to_pagetab_section)
+                    mifa_annotations_to_pagetab_section)
 
 def rembi_mifa_container_to_pagetab(container: REMBIContainer, accession_id: Optional[str], root_path: Optional[str]) -> Submission:
     """Convert a REMBI + MIFA Container object into a PageTab submission."""
@@ -36,9 +35,6 @@ def rembi_mifa_container_to_pagetab(container: REMBIContainer, accession_id: Opt
     submission.section.subsections += rembi_objects_to_pagetab_sections(
         acquisition_to_pagetab_section, container.acquisitions
     )
-    # submission.section.subsections += rembi_objects_to_pagetab_sections(
-    #     mifa_annotations_to_pagetab_section, container.annotations
-    # )
 
     ann_section = [
         mifa_annotations_to_pagetab_section(ann_object, v_object, ann_id)

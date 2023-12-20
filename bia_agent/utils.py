@@ -7,7 +7,7 @@ from bia_rembi_models.acquisition import ImageAcquisition
 from bia_rembi_models.analysis import ImageAnalysis
 from bia_rembi_models.study_component import StudyComponent
 from bia_rembi_models.correlation import ImageCorrelation
-from bia_faim_models.schema import Annotations, Version
+from bia_mifa_models.pydantic_model import Annotations, Version
 
 from .biostudies import Attribute, Section, Submission, Link
 from .rembi import REMBIAssociation
@@ -472,17 +472,11 @@ def mifa_annotations_to_pagetab_section(annotations: Annotations, version: Versi
 
 def mifa_version_to_pagetab_section(version: Version) -> Section:
 
-    #print(version.timestamp)
-    #print(type(version.timestamp))
-    #dt=version.timestamp.strftime("%Y-%m-%d %H:%M:%S")
-    #print(dt)
-    #print(type(dt))
-
     version_section = Section(
         type="Version",
         attributes=[
             Attribute(name="Annotation version", value=version.version),
-            Attribute(name="Version timestamp", value=version.timestamp)
+            Attribute(name="Version timestamp", value=str(version.timestamp))
         ]
     )
 

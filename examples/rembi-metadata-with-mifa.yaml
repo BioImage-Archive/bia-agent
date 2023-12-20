@@ -44,8 +44,8 @@ study:
       under the grant no. 861750, both grants kindly provided by the Austrian Research Promotion Agency (FFG), and the St. Anna Kinderkrebsforschung. 
       Partial funding was further provided by BMK, BMDW, and the Province of Upper Austria in the frame of the COMET Programme managed by FFG.
     grant_references:
-      - funder: EraSME
-        identifier: 844198
+       - funder: EraSME
+         identifier: 844198
   links: 
     - link_url: https://github.com/perlfloccri/NuclearSegmentationPipeline
       link_description: Deep Learning models trained with this dataset
@@ -111,10 +111,10 @@ annotations:
     annotation_coverage: All the images in the dataset were annotated
 version:
     Segmentation masks:
-      version: 1.1
-      timestamp: '2015-03-22 01:49:21' #'2032-04-23T10:20:30.400+02:30' "2023-09-03T12:34:56"
-      changes: "The new version of the dataset includes 20 additional annotations (files seg34.tif to seg54.tif)."
-      previous_version: 1.0
+      version: v1.1
+      timestamp: '2015-03-22 01:49:21' 
+      changes: "The new version of the dataset includes 20 additional annotations (files seg34.tif to seg54.tif)"
+      previous_version: v1.0
 study_component:
   experiment1:
     name: Confocal fluorescence images

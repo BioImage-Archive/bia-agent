@@ -50,12 +50,18 @@ acquisitions: # Add more acqusitions by repeating the block below.
     imaging_instrument: # Required # Description of the instrument used to capture the images.
     image_acquisition_parameters: # Required # How the images were acquired, including instrument settings/parameters.
 annotations:
-  Annotations:  # You can edit this to be more decriptive e.g. confocal microscopy acquisition,  Ultrasound Image Acquisition. But you will need to edit the name section in the associations section below 
+  Annotations:  # You can edit this to be more decriptive e.g. Segmentation masks, Counts... But you will need to edit the name section in the version section below 
     annotation_overview: # Required # Short descriptive summary indicating the type of annotation and how it was generated 
     annotation_method: # Required # Description of how the annotations where created. For example, were the annotations crowdsourced or expertly annotated, produced by  a human or software, what software was used, when were the annotations created, protocols used for consensus and quality assurance
     annotation_confidence_level: # Optional # Confidence on annotation accuracy (e.g., self-reported confidence, the variance among several annotators, or the number of years of experience of the annotator)
     annotation_criteria: # Optional # Rules used to generate annotations (e.g. only nuclei in focus were segmented)
     annotation_coverage: # Optional # If the dataset is not completely annotated, which images from the dataset were annotated, and what percentage of the data has been annotated from what is available?
+version:
+    Annotations: # Edit this according to the name used in the annotations section above
+      version: # Required # Unique version number for the annotations
+      timestamp: # Required # Date and time when the annotations version was created
+      changes: # Optional # Textual description of changes compared to previous version
+      previous_version: # Optional # Pointer to previous annotations version
 study_component: # Add more study components by repeating the block below (change title to 'Study component 2', etc.). You will need an associations block (below) per study component
   Study component 1:  
     name: # Required # The name of your study component
