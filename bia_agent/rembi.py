@@ -6,9 +6,8 @@ from bia_rembi_models.study import Study
 from bia_rembi_models.sample import Biosample
 from bia_rembi_models.specimen import Specimen
 from bia_rembi_models.acquisition import ImageAcquisition
-from bia_faim_models.schema import Annotations
+from bia_mifa_models.pydantic_model import Annotations, Version
 from bia_rembi_models.study_component import StudyComponent
-
 
 class REMBIAssociation(BaseModel):
     biosample_id: str
@@ -24,6 +23,7 @@ class REMBIContainer(BaseModel):
 
     associations: Dict[str, REMBIAssociation] = {}
     annotations: Dict[str, Annotations] = {}
+    version: Dict[str, Version] = {}
     study_component: Dict[str, StudyComponent] = {}
 
 

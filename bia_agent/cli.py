@@ -130,7 +130,6 @@ def rembi_to_pagetab(rembi_fpath: pathlib.Path, accession_id: str):
 @app.command()
 def rembi_mifa_to_pagetab(rembi_mifa_fpath: pathlib.Path, accession_id: str):
     rembi_mifa_container = parse_yaml(rembi_mifa_fpath)
-
     bst_submission = rembi_mifa_container_to_pagetab(rembi_mifa_container, accession_id=accession_id, root_path=None)
     
     print(bst_submission.as_tsv())

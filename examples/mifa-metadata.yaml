@@ -79,3 +79,9 @@ annotations:
       and blurring allows for. Nuclei are not annotated if their morphology was heavily changed due to the preparation procedure. 
       Nuclei from dividing cells are annotated as one nucleus unless clear borders can be distinguished between the resulting new nuclei."
     annotation_coverage: All the images in the dataset were annotated
+version:
+    Segmentation masks:
+      version: v1.1
+      timestamp: '2015-03-22 01:49:21' 
+      changes: "The new version of the dataset includes 20 additional annotations (files seg34.tif to seg54.tif)"
+      previous_version: v1.0
