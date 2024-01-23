@@ -1,46 +1,46 @@
-study: 
-  title: 
-  description: 
+study:
+  title:
+  description:
   private_until_date: 2021-01-01
   keywords:
-    - Keyword 1
-    - Keyword 2
+  - Keyword 1
+  - Keyword 2
   authors:
-    - first_name: 
-      last_name: 
-      role: submitter
-      affiliation:
-        name: 
-        address: 
+  - first_name:
+    last_name:
+    role: submitter
+    affiliation:
+      name:
+      address:
   publications:
-    - title: 
-      authors: 
-      doi: 
-      year: 
-      pubmed_id: 
+  - title:
+    authors:
+    doi:
+    year:
+    pubmed_id:
   links:
-    - link_url: 
-      link_description: 
+  - link_url:
+    link_description:
   rembi_version: '1.5'
 biosamples:
   First biosample:
     organism:
-      scientific_name: 
-      common_name: 
-      ncbi_taxon: 
-    biological_entity: 
-    description: 
+      scientific_name:
+      common_name:
+      ncbi_taxon:
+    biological_entity:
+    description:
 specimens:
   First specimen:
-    sample_preparation: 
+    sample_preparation:
 acquisitions:
   First acquisition:
-    imaging_method: 
-      value: 
-      ontology_id: 
-      ontology_name: 
-    imaging_instrument: 
-    image_acquisition_parameters: 
+    imaging_method:
+      value:
+      ontology_id:
+      ontology_name:
+    imaging_instrument:
+    image_acquisition_parameters:
 associations:
   experiment1:
     biosample_id: First biosample
