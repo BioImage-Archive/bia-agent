@@ -28,20 +28,20 @@ study:
   links:
   - link_url: https://www.ebi.ac.uk/biostudies/bioimages/studies/S-BSST401
     link_description: Original submission (not curated)
-  rembi_version: '1.5'
+  rembi_version: 1.5
 biosamples:
-  In utero mouse embryos:
+  "In utero mouse embryos":
     organism:
       scientific_name: mus musculus
       common_name: mouse
       ncbi_taxon: NCBI:txid10090
     biological_entity: mouse embryo volumes
-    description: mouse embryo volumes which were acquired in utero and in vivo from pregnant mice (10-14.5 days after mating)
+    description: "mouse embryo volumes which were acquired in utero and in vivo from pregnant mice (10-14.5 days after mating)"
 specimens:
-  HFU sample preparation:
+  "HFU sample preparation":
     sample_preparation: Unknown
 acquisitions:
-  Ultrasound Image Acquisition:
+  "Ultrasound Image Acquisition":
     imaging_method:
       value: Echography
       ontology_id: http://edamontology.org/topic_3954
