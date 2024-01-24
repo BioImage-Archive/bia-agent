@@ -28,7 +28,7 @@ study:
   links:
   - link_url: https://www.ebi.ac.uk/biostudies/bioimages/studies/S-BSST401
     link_description: Original submission (not curated)
-  rembi_version: 1.5
+  rembi_version: '1.5'
 biosamples:
   "In utero mouse embryos":
     organism:
