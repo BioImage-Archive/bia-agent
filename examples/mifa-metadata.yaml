@@ -40,11 +40,12 @@ study:
     - funder: "EraSME"
       identifier: 844198
   links:
-  - link_url: "https://github.com/perlfloccri/NuclearSegmentationPipeline"
-    link_description: "Deep Learning models trained with this dataset"
-  acknowledgements: |-
+    - link_url: https://github.com/perlfloccri/NuclearSegmentationPipeline
+      link_description: |-
+        Deep Learning models trained with this dataset
+  acknowledgements: |- 
     We thank Professor Josiah Carberry for useful discussions
-  rembi_version: 1.5
+  rembi_version: "1.5"
 annotations:
   "Segmentation masks":
     annotation_overview: |-
