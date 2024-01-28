@@ -18,8 +18,8 @@ def rembi_container_to_pagetab(container: REMBIContainer, accession_id: Optional
 
     def rembi_objects_to_pagetab_sections(conversion_func, objects_dict):
         sections = [
-            conversion_func(object, title=object_id)
-            for object_id, object in objects_dict.items()
+            conversion_func(object, title=object_id, suffix=n)
+            for n, (object_id, object) in enumerate(objects_dict.items(), start=1)
         ]
 
         return sections

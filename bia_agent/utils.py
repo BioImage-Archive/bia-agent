@@ -360,6 +360,7 @@ def correlation_to_pagetab_section(correlation: ImageCorrelation, suffix=1) -> S
 
     return correlation_section
 
+
 def study_component_to_pagetab_section(study_component: StudyComponent, associations: REMBIAssociation, suffix=1) -> Section:
 
     study_component_section = Section(
@@ -380,6 +381,7 @@ def study_component_to_pagetab_section(study_component: StudyComponent, associat
     
     return study_component_section
 
+
 def rembi_association_to_pagetab_section(association: REMBIAssociation) -> Section:
 
     association_section = Section(
@@ -392,6 +394,7 @@ def rembi_association_to_pagetab_section(association: REMBIAssociation) -> Secti
     )
 
     return association_section
+
 
 def create_study_component(name: str, description: str, association: REMBIAssociation, file_list_fname: str, suffix=1):
 
