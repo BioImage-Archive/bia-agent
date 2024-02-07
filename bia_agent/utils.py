@@ -452,20 +452,20 @@ def mifa_annotations_to_pagetab_section(annotations: Annotations, version: Versi
                 value=title
             ),
             Attribute(
-                name="Annotation overview",
+                name="Annotation Overview",
                 value=annotations.annotation_overview
             ),
             Attribute(
-                name="Annotation method",
+                name="Annotation Method",
                 value=annotations.annotation_method
             )
         ],
         subsections=[mifa_version_to_pagetab_section(version)]
     )
     
-    append_if_not_none(annotations_section.attributes, "Annotation confidence level", annotations.annotation_confidence_level)
-    append_if_not_none(annotations_section.attributes, "Annotation criteria", annotations.annotation_criteria)
-    append_if_not_none(annotations_section.attributes, "Annotation coverage", annotations.annotation_coverage)
+    append_if_not_none(annotations_section.attributes, "Annotation Confidence Level", annotations.annotation_confidence_level)
+    append_if_not_none(annotations_section.attributes, "Annotation Criteria", annotations.annotation_criteria)
+    append_if_not_none(annotations_section.attributes, "Annotation Coverage", annotations.annotation_coverage)
     
 
     return annotations_section
