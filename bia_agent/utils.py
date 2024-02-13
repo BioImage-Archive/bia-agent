@@ -57,7 +57,7 @@ def rembi_author_to_pagetab_section(author, org_map):
     # role_attr = Attribute(name="Role", value=author.role)
     # orcid_attr = Attribute(name="ORCID", value=author.orcid)
 
-    append_if_not_none(author_attributes, "Email", author.email)
+    append_if_not_none(author_attributes, "E-mail", author.email)
     append_if_not_none(author_attributes, "Role", author.role)
     append_if_not_none(author_attributes, "ORCID", author.orcid)
 
