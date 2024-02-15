@@ -10,7 +10,7 @@ packages = [{include = "bia_agent"}]
 bia-agent = "bia_agent.cli:app"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 bia-rembi-models = "^0.1.0"
 ruamel-yaml = "^0.17.22"
 typer = "^0.9.0"
