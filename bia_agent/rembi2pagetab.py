@@ -5,13 +5,14 @@ from .rembi import REMBIContainer
 from .utils import (rembi_study_to_pagetab_submission,
                     biosample_to_pagetab_section,
                     specimen_to_pagetab_section,
-                    acquisition_to_pagetab_section)
+                    acquisition_to_pagetab_section,
+                    ST_REMBI_TEMPLATE_VERSION)
 
 
 def rembi_container_to_pagetab(container: REMBIContainer, accession_id: Optional[str], root_path: Optional[str]) -> Submission:
     """Convert a REMBI Container object into a PageTab submission."""
 
-    submission = rembi_study_to_pagetab_submission(container.study, accession_id=accession_id)
+    submission = rembi_study_to_pagetab_submission(container.study, template=ST_REMBI_TEMPLATE_VERSION, accession_id=accession_id)
 
     if root_path:
         submission.attributes.append(Attribute(name="RootPath", value=root_path))
