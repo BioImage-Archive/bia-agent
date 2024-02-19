@@ -13,6 +13,12 @@ from .biostudies import Attribute, Section, Submission, Link
 from .rembi import REMBIAssociation
 
 VERSION = "1.0.0"
+# The template the Submission Tool will use to open the submission
+#   If making model changes, check for compatibility with the ST and bump this if needed
+#   ! gotcha: Check form fields and submission pagetab fields individually. It's not always obvious when fields are stripped,
+#        and resubmitting and checking the pagetab doesn't work because the pagetab isn't changed
+ST_MIFA_TEMPLATE_VERSION = "BioImages.MIFA.v1"
+ST_REMBI_TEMPLATE_VERSION = "BioImages.v4"
 
 def append_if_not_none(attr_list, name, value):
     if value:
@@ -88,7 +94,7 @@ def rembi_publication_to_pagetab_section(pub) -> Section:
 
     return pub_section
 
-def rembi_study_to_pagetab_submission(rembi_study: Study, accession_id: Optional[str], collection: str = "BioImages") -> Submission:
+def rembi_study_to_pagetab_submission(rembi_study: Study, accession_id: Optional[str], template: str, collection: str = "BioImages") -> Submission:
 
     org_map = generate_org_map(rembi_study)
 
@@ -171,6 +177,7 @@ def rembi_study_to_pagetab_submission(rembi_study: Study, accession_id: Optional
             Attribute(name="Title", value=rembi_study.title),
             Attribute(name="ReleaseDate", value=rembi_study.private_until_date.strftime("%Y-%m-%d")),
             Attribute(name="AttachTo", value=collection),
+            Attribute(name="Template", value=template),
             Attribute(name="REMBI_PageTab Conversion Script Version", value=VERSION)
         ],
         section=study_section,
