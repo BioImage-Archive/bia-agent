@@ -42,7 +42,7 @@ study:
   - link_url: "https://github.com/perlfloccri/NuclearSegmentationPipeline"
     link_description: "Deep Learning models trained with this dataset"
   acknowledgements: "We thank Professor Josiah Carberry for useful discussions"
-  rembi_version: 1.5
+  rembi_version: "1.5"
 biosamples:
   "First biosample":
     organism:
@@ -53,8 +53,8 @@ biosamples:
     description: "Tumor sample from ganglioneuroblastoma patient"
 specimens:
   "First specimen":
-sample_preparation: >-
-  The fresh-frozen tumor tissues of one ganglioneuroblastoma patient, one neuroblastoma patient and one Wilms tumor patient were embedded into tissue-tek-OCT and 4 𝜇𝑚 thick cryosections were prepared. Sections were mounted on Histobond glass slides (Marienfeld), fixed in 4.5% formaledhyde and stained with 4,6-diamino-2-phenylindole (DAPI), a blue fluorescent dye conventionally used for staining of nuclei for cellular imaging techniques. Finally, slides were covered with Vectashield and coverslips were sealed on the slides with rubber cement.
+    sample_preparation: >-
+      The fresh-frozen tumor tissues of one ganglioneuroblastoma patient, one neuroblastoma patient and one Wilms tumor patient were embedded into tissue-tek-OCT and 4 𝜇𝑚 thick cryosections were prepared. Sections were mounted on Histobond glass slides (Marienfeld), fixed in 4.5% formaledhyde and stained with 4,6-diamino-2-phenylindole (DAPI), a blue fluorescent dye conventionally used for staining of nuclei for cellular imaging techniques. Finally, slides were covered with Vectashield and coverslips were sealed on the slides with rubber cement.
 acquisitions:
   "First acquisition":
     imaging_method:
@@ -90,11 +90,11 @@ study_component:
   experiment1:
     name: "Confocal fluorescence images"
     description: "Confocal fluorescence images of tumor sample from neuroblastoma patient"
-    rembi_version: 1.5
+    rembi_version: "1.5"
   experiment2:
     name: "Multi-photon fluorescence images"
     description: "Multi-photon fluorescence images of tumor sample from neuroblastoma patient"
-    rembi_version: 1.5
+    rembi_version: "1.5"
 associations:
   experiment1:
     biosample_id: "First biosample"
