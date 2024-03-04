@@ -38,9 +38,13 @@ biosamples: # Add more biosamples by repeating the block below.
       ncbi_taxon: # Required # Leave blank if not known. e.g NCBI:txid7227 
     biological_entity: # Required # What is being imaged. e.g. amnioserosa
     description: # Optional # High level description of sample.
+    intrinsic_variables: # Optional-Delete if not relevant #[List of intrinsic, eg.genetic alterations]
+    extrinsic_variables: # Optional-Delete if not relevant #[List of external treatments, eg. reagents]
+    experimental_variables: # Optional-Delete if not relevant #[List of thing intentionally varied between multiple images]
 specimens: # Add more specimens by repeating the block below.
   First specimen: # You can edit this to be more descriptive e.g. HFU sample preparation, embryo fixation and immunostaining. But you will need to edit the name section in the associations section below 
     sample_preparation: # Required # How the sample was prepared for imaging.
+    growth_protocol: # Optional # How the sample was grown or cultured and prepared for imaging.
 acquisitions: # Add more acqusitions by repeating the block below.
   First acquisition: # You can edit this to be more decriptive e.g. confocal microscopy acquisition,  Ultrasound Image Acquisition. But you will need to edit the name section in the associations section below 
     imaging_method:
@@ -49,14 +53,22 @@ acquisitions: # Add more acqusitions by repeating the block below.
       ontology_name: # Required # e.g. Biological Imaging Methods Ontology (FBbi) - Leave blank if not known
     imaging_instrument: # Required # Description of the instrument used to capture the images.
     image_acquisition_parameters: # Required # How the images were acquired, including instrument settings/parameters.
-annotations:
+correlations: # Optional section - Delete the whole section if not relevant
+  Image correlation: # You can edit this to be more decriptive
+    spatial_and_temporal_alignment: # Required for this section # Method used to correlate images from different modalities.
+    fiducials_used: # Required for this section # Features from correlated datasets used for colocalisation
+    transformation_matrix: # Required for this section # Correlation transforms
+analysis: # Optional section - Delete the whole section if not relevant
+  Analysis: # You can edit this to be more decriptive
+    analysis_overview: # Required for this section # How image analysis was carried out.
+annotations: # Optional section - Delete the whole section if not relevant
   Annotations: # You can edit this to be more decriptive e.g. Segmentation masks, Counts... But you will need to edit the name section in the version section below 
     annotation_overview: # Required # Short descriptive summary indicating the type of annotation and how it was generated 
     annotation_method: # Required # Description of how the annotations where created. For example, were the annotations crowdsourced or expertly annotated, produced by  a human or software, what software was used, when were the annotations created, protocols used for consensus and quality assurance
     annotation_confidence_level: # Optional # Confidence on annotation accuracy (e.g., self-reported confidence, the variance among several annotators, or the number of years of experience of the annotator)
     annotation_criteria: # Optional # Rules used to generate annotations (e.g. only nuclei in focus were segmented)
     annotation_coverage: # Optional # If the dataset is not completely annotated, which images from the dataset were annotated, and what percentage of the data has been annotated from what is available?
-version:
+version: # Optional section if no annotations section exists 
   Annotations: # Edit this according to the name used in the annotations section above
     version: # Required # Unique version number for the annotations
     timestamp: # Required # Date and time when the annotations version was created
@@ -72,3 +84,5 @@ associations: # Add more associations by repeating the block below. You will nee
     biosample_id: First biosample # Required #  Edit the name of the sections that belong to each study component if you changed them above
     specimen_id: First specimen # Required 
     acquisition_id: First acquisition # Required 
+    correlation_id: Image correlation # Required if correlations section exists
+    analysis_id: Analysis # Required if analysis section exists
