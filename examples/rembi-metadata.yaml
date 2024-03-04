@@ -1,6 +1,7 @@
 study:
   title: "Embryonic mice ultrasound volumes with body and brain volume segmentation masks"
-  description: "A dataset consisting of 231 embryonic mice High Frequency Ultrasound volumes which were acquired in utero and in vivo from pregnant mice, together with body and brain volume segmentation masks."
+  description: "A dataset consisting of 231 embryonic mice High Frequency Ultrasound volumes which were acquired in utero and in vivo from pregnant mice.
+    Another submission contains the body and brain volume segmentation masks of these images."
   private_until_date: 2023-05-10
   keywords:
   - Image segmentation
@@ -39,7 +40,8 @@ biosamples:
       ncbi_taxon: NCBI:txid10090
     biological_entity: mouse embryo volumes
     description: "mouse embryo volumes which were acquired in utero and in vivo from pregnant mice (10-14.5 days after mating)"
-    intrinsic_variables: [Homozygous GFP integration into mitotic genes]
+    intrinsic_variables: 
+    - Homozygous GFP integration into mitotic genes
 specimens:
   "HFU sample preparation":
     sample_preparation: Unknown
@@ -58,8 +60,7 @@ correlations:
     transformation_matrix: Matrix is provided as a table.
 analysis:
   "Image Analysis":
-    analysis_overview: "Analysis is done with custom tensorflow models. 
-    The code is on github. Linked in Links field."
+    analysis_overview: "Analysis is done with custom tensorflow models. The code is on github. Linked in Links field."
 study_component:
   experiment1:
     name: "Ultrasound images"
