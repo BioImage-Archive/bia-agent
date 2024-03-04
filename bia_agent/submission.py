@@ -4,6 +4,8 @@ from typing import Dict, Optional
 
 from pydantic import BaseModel, Field
 from ruamel.yaml import YAML
+from ruamel.yaml.scanner import ScannerError
+from ruamel.yaml.parser import ParserError
 
 from .files import FileCollection
 from .rembi2pagetab import rembi_container_to_pagetab
@@ -53,8 +55,11 @@ def submission_from_dirpath(submission_dirpath: pathlib.Path):
 
     yaml = YAML()
 
-    with open(submission_file_fpath) as fh:
-        raw_object = yaml.load(fh)
+    try:
+        with open(submission_file_fpath) as fh:
+            raw_object = yaml.load(fh)
+    except (ScannerError, ParserError) as e:
+        exit(f"Invalid YAML: {str(e)}")
 
     bia_submission = BIASubmission.parse_obj(raw_object)
     bia_submission.submission_dirpath = submission_dirpath

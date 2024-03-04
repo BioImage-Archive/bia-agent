@@ -2,6 +2,8 @@ from typing import Dict
 
 from pydantic import BaseModel
 from ruamel.yaml import YAML
+from ruamel.yaml.scanner import ScannerError
+from ruamel.yaml.parser import ParserError
 from bia_rembi_models.study import Study
 from bia_rembi_models.sample import Biosample
 from bia_rembi_models.specimen import Specimen
@@ -29,7 +31,12 @@ class REMBIContainer(BaseModel):
 
 def parse_yaml(fpath):
     yaml = YAML()
-    with open(fpath) as fh:
-        raw_object = yaml.load(fh)
+
+    try:
+        with open(fpath) as fh:
+            raw_object = yaml.load(fh)
+    except (ScannerError, ParserError) as e:
+        exit(f"Invalid YAML: {str(e)}")
+
 
     return REMBIContainer.parse_obj(raw_object)
