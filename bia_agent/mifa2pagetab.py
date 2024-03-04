@@ -7,6 +7,8 @@ from .utils import (rembi_study_to_pagetab_submission,
                     biosample_to_pagetab_section,
                     specimen_to_pagetab_section,
                     acquisition_to_pagetab_section,
+                    correlation_to_pagetab_section,
+                    analysis_to_pagetab_section,
                     study_component_to_pagetab_section,
                     mifa_annotations_to_pagetab_section,
                     ST_MIFA_TEMPLATE_VERSION)
@@ -35,6 +37,12 @@ def rembi_mifa_container_to_pagetab(container: REMBIContainer, accession_id: Opt
     )
     submission.section.subsections += rembi_objects_to_pagetab_sections(
         acquisition_to_pagetab_section, container.acquisitions
+    )
+    submission.section.subsections += rembi_objects_to_pagetab_sections(
+        correlation_to_pagetab_section, container.correlations
+    )
+    submission.section.subsections += rembi_objects_to_pagetab_sections(
+        analysis_to_pagetab_section, container.analysis
     )
 
     ann_section = [

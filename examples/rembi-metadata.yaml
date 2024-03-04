@@ -28,6 +28,8 @@ study:
   links:
   - link_url: https://www.ebi.ac.uk/biostudies/bioimages/studies/S-BSST401
     link_description: Original submission (not curated)
+  - link_url: https://github.com/BioImage-Archive
+    link_description: Github link for the Image Analysis
   rembi_version: '1.5'
 biosamples:
   "In utero mouse embryos":
@@ -37,6 +39,7 @@ biosamples:
       ncbi_taxon: NCBI:txid10090
     biological_entity: mouse embryo volumes
     description: "mouse embryo volumes which were acquired in utero and in vivo from pregnant mice (10-14.5 days after mating)"
+    intrinsic_variables: [Homozygous GFP integration into mitotic genes]
 specimens:
   "HFU sample preparation":
     sample_preparation: Unknown
@@ -48,8 +51,24 @@ acquisitions:
       ontology_name: EDAM
     imaging_instrument: High frequency ultrasound 5-element 40-MHz annular array
     image_acquisition_parameters: The dimensions of the HFU volumes vary from 150 x 161 x 81 to 210 x 281 x 282 voxels and the voxel size is 50 x 50 x 50 μm
+correlations:
+  "Image Correlation":
+    spatial_and_temporal_alignment: An alignment algorithm is used.
+    fiducials_used: Fiducials were randomly dropped into sample
+    transformation_matrix: Matrix is provided as a table.
+analysis:
+  "Image Analysis":
+    analysis_overview: "Analysis is done with custom tensorflow models. 
+    The code is on github. Linked in Links field."
+study_component:
+  experiment1:
+    name: "Ultrasound images"
+    description: "Ultrasound images and correlation and analysis"
+    rembi_version: "1.5"
 associations:
   experiment1:
     biosample_id: In utero mouse embryos
     specimen_id: HFU sample preparation
     acquisition_id: Ultrasound Image Acquisition
+    correlation_id: Image Correlation
+    analysis_id: Image Analysis

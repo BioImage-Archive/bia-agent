@@ -260,12 +260,16 @@ def biosample_to_pagetab_section(biosample: Biosample, title: str, suffix=1) -> 
     
     return biosample_section
 
-def analysis_to_pagetab_section(analysis: ImageAnalysis, suffix=1) -> Section:
+def analysis_to_pagetab_section(analysis: ImageAnalysis, title:str, suffix=1) -> Section:
 
     analysis_section = Section(
         type="Image Analysis",
         accno=f"Image-Analysis-{suffix}",
         attributes=[
+            Attribute(
+                name="Title",
+                value=title
+            ),
             Attribute(
                 name="Image Analysis Overview",
                 value=analysis.analysis_overview
@@ -346,11 +350,15 @@ def acquisition_to_pagetab_section(acquisition: ImageAcquisition, title: str, su
 
     return acquisition_section
 
-def correlation_to_pagetab_section(correlation: ImageCorrelation, suffix=1) -> Section:
+def correlation_to_pagetab_section(correlation: ImageCorrelation, title: str, suffix=1) -> Section:
     correlation_section = Section(
         type="Image Correlation",
         accno=f"Image Correlation-{suffix}",
         attributes=[
+            Attribute(
+                name="Title",
+                value=title
+            ),
             Attribute(
                 name="Spatial and temporal alignment",
                 value=correlation.spatial_and_temporal_alignment
@@ -398,6 +406,8 @@ def rembi_association_to_pagetab_section(association: REMBIAssociation) -> Secti
             Attribute(name="Image acquisition", value=association.acquisition_id)
         ]
     )
+    append_if_not_none(association_section.attributes, "Image Correlation", association.correlation_id)
+    append_if_not_none(association_section.attributes, "Image Analysis", association.analysis_id)
 
     return association_section
 
