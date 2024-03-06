@@ -473,6 +473,10 @@ def mifa_annotations_to_pagetab_section(annotations: Annotations, version: Versi
                 value=annotations.annotation_overview
             ),
             Attribute(
+                name="Annotation Type",
+                value=",".join(annotations.annotation_type)
+            ),
+            Attribute(
                 name="Annotation Method",
                 value=annotations.annotation_method
             )

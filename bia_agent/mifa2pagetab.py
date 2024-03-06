@@ -71,13 +71,15 @@ def mifa_container_to_pagetab(container: REMBIContainer, accession_id: Optional[
     def rembi_objects_to_pagetab_sections(conversion_func, objects_dict):
 
         sections = [
-            conversion_func(object, object_id)
+            conversion_func(object, title=object_id)
             for object_id, object in objects_dict.items()
         ]
         return sections
 
-    submission.section.subsections += rembi_objects_to_pagetab_sections(
-        mifa_annotations_to_pagetab_section, container.annotations
-    )
+    ann_section = [
+        mifa_annotations_to_pagetab_section(ann_object, v_object, ann_id)
+        for (ann_id, ann_object),(v_id, v_object) in zip(container.annotations.items(),container.version.items())
+    ]
+    submission.section.subsections += ann_section
 
     return submission
