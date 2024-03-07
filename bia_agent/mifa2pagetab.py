@@ -24,7 +24,7 @@ def rembi_mifa_container_to_pagetab(container: REMBIContainer, accession_id: Opt
     def rembi_objects_to_pagetab_sections(conversion_func, objects_dict):
 
         sections = [
-            conversion_func(object, object_id)
+            conversion_func(object, title=object_id)
             for object_id, object in objects_dict.items()
         ]
         return sections
@@ -71,7 +71,7 @@ def mifa_container_to_pagetab(container: REMBIContainer, accession_id: Optional[
     def rembi_objects_to_pagetab_sections(conversion_func, objects_dict):
 
         sections = [
-            conversion_func(object, title=object_id)
+            conversion_func(object, object_id)
             for object_id, object in objects_dict.items()
         ]
         return sections
