@@ -9,6 +9,7 @@ from .utils import (rembi_study_to_pagetab_submission,
                     correlation_to_pagetab_section,
                     analysis_to_pagetab_section,
                     study_component_to_pagetab_section,
+                    rembi_objects_to_pagetab_sections,
                     ST_REMBI_TEMPLATE_VERSION)
 
 
@@ -20,13 +21,6 @@ def rembi_container_to_pagetab(container: REMBIContainer, accession_id: Optional
     if root_path:
         submission.attributes.append(Attribute(name="RootPath", value=root_path))
 
-    def rembi_objects_to_pagetab_sections(conversion_func, objects_dict):
-        sections = [
-            conversion_func(object, title=object_id)
-            for object_id, object in objects_dict.items()
-        ]
-
-        return sections
 
     submission.section.subsections += rembi_objects_to_pagetab_sections(
         biosample_to_pagetab_section, container.biosamples
@@ -45,8 +39,8 @@ def rembi_container_to_pagetab(container: REMBIContainer, accession_id: Optional
     )
 
     sc_section = [
-        study_component_to_pagetab_section(sc_object,a_object)
-        for (sc_id, sc_object),(a_id, a_object) in zip(container.study_component.items(),container.associations.items())
+        study_component_to_pagetab_section(sc_object, a_object, suffix=n)
+        for n, ((sc_id, sc_object),(a_id, a_object)) in enumerate(zip(container.study_component.items(),container.associations.items()), start=1)
     ]
 
     submission.section.subsections += sc_section

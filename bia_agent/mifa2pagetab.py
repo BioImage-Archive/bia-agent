@@ -11,6 +11,7 @@ from .utils import (rembi_study_to_pagetab_submission,
                     analysis_to_pagetab_section,
                     study_component_to_pagetab_section,
                     mifa_annotations_to_pagetab_section,
+                    rembi_objects_to_pagetab_sections,
                     ST_MIFA_TEMPLATE_VERSION)
 
 def rembi_mifa_container_to_pagetab(container: REMBIContainer, accession_id: Optional[str], root_path: Optional[str]) -> Submission:
@@ -20,14 +21,6 @@ def rembi_mifa_container_to_pagetab(container: REMBIContainer, accession_id: Opt
 
     if root_path:
         submission.attributes.append(Attribute(name="RootPath", value=root_path))
-
-    def rembi_objects_to_pagetab_sections(conversion_func, objects_dict):
-
-        sections = [
-            conversion_func(object, title=object_id)
-            for object_id, object in objects_dict.items()
-        ]
-        return sections
 
     submission.section.subsections += rembi_objects_to_pagetab_sections(
         biosample_to_pagetab_section, container.biosamples
@@ -46,14 +39,14 @@ def rembi_mifa_container_to_pagetab(container: REMBIContainer, accession_id: Opt
     )
 
     ann_section = [
-        mifa_annotations_to_pagetab_section(ann_object, v_object, ann_id)
-        for (ann_id, ann_object),(v_id, v_object) in zip(container.annotations.items(),container.version.items())
+        mifa_annotations_to_pagetab_section(annotations=ann_object, version=v_object, title=ann_id, suffix=n)
+        for n, ((ann_id, ann_object),(v_id, v_object)) in enumerate(zip(container.annotations.items(),container.version.items()), start=1)
     ]
     submission.section.subsections += ann_section
 
     sc_section = [
-        study_component_to_pagetab_section(sc_object,a_object)
-        for (sc_id, sc_object),(a_id, a_object) in zip(container.study_component.items(),container.associations.items())
+        study_component_to_pagetab_section(study_component=sc_object, associations=a_object, suffix=n)
+        for n, ((sc_id, sc_object),(a_id, a_object)) in enumerate(zip(container.study_component.items(),container.associations.items()), start=1)
     ]
 
     submission.section.subsections += sc_section
@@ -68,17 +61,9 @@ def mifa_container_to_pagetab(container: REMBIContainer, accession_id: Optional[
     if root_path:
         submission.attributes.append(Attribute(name="RootPath", value=root_path))
 
-    def rembi_objects_to_pagetab_sections(conversion_func, objects_dict):
-
-        sections = [
-            conversion_func(object, object_id)
-            for object_id, object in objects_dict.items()
-        ]
-        return sections
-
     ann_section = [
-        mifa_annotations_to_pagetab_section(ann_object, v_object, ann_id)
-        for (ann_id, ann_object),(v_id, v_object) in zip(container.annotations.items(),container.version.items())
+        mifa_annotations_to_pagetab_section(annotations=ann_object, version=v_object, title=ann_id, suffix=n)
+        for n, ((ann_id, ann_object),(v_id, v_object)) in enumerate(zip(container.annotations.items(),container.version.items()), start=1)
     ]
     submission.section.subsections += ann_section
 

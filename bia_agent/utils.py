@@ -505,3 +505,12 @@ def mifa_version_to_pagetab_section(version: Version) -> Section:
     append_if_not_none(version_section.attributes, "Previous version", version.previous_version)
 
     return version_section
+
+
+def rembi_objects_to_pagetab_sections(conversion_func, objects_dict):
+    sections = [
+        conversion_func(object, title=object_id, suffix=n)
+        for n, (object_id, object) in enumerate(objects_dict.items(), start=1)
+    ]
+
+    return sections
