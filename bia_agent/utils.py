@@ -26,13 +26,10 @@ def append_if_not_none(attr_list, name, value):
 
 
 def generate_org_map(rembi_study):
-    organisations = set(author.affiliation for author in rembi_study.authors)
-    org_map = {
-        org: f"o{n}"
-        for n, org in enumerate(organisations, start=1)
-    }
-    
-    return org_map
+    organisations = dict.fromkeys(author.affiliation for author in rembi_study.authors)
+    for n, key in enumerate(organisations.keys(), start=1):
+        organisations[key] = f"o{n}"
+    return organisations
 
 
 def organisation_and_label_to_pagetab_section(org, org_label):

@@ -1,0 +1,91 @@
+Submission	S-BIADXXX
+Title	Embryonic mice ultrasound volumes with body and brain volume segmentation masks
+ReleaseDate	2023-05-10
+AttachTo	BioImages
+Template	BioImages.v4
+REMBI_PageTab Conversion Script Version	1.0.0
+
+Study
+Description	A dataset consisting of 231 embryonic mice High Frequency Ultrasound volumes which were acquired in utero and in vivo from pregnant mice. Another submission contains the body and brain volume segmentation masks of these images.
+Keyword	Image segmentation
+Keyword	high-frequency ultrasound
+Keyword	mouse embryo
+Keyword	volumetric deep learning
+
+Link	https://www.ebi.ac.uk/biostudies/bioimages/studies/S-BSST401
+Description	Original submission (not curated)
+
+Link	https://github.com/BioImage-Archive
+Description	Github link for the Image Analysis
+
+author
+Name	Ziming Qiu
+Role	submitter
+<affiliation>	o1
+
+author
+Name	Matthew Hartley
+Role	data curator
+<affiliation>	o2
+
+organization	o1
+Name	Department of Electrical and Computer Engineering
+Address	New York University, New York, USA
+
+organization	o2
+Name	European Molecular Biology Laboratory, European Bioinformatics Institute
+Address	
+
+Publication
+Title	DEEP MOUSE: AN END-TO-END AUTO-CONTEXT REFINEMENT FRAMEWORK FOR BRAIN VENTRICLE & BODY SEGMENTATION IN EMBRYONIC MICE ULTRASOUND VOLUMES.
+Year	2020
+Authors	Qiu Z, Das W, Wang C, Langerman J, Nair N, Aristizábal O, Mamou J, Turnbull DH, Ketterling JA, Wang Y
+DOI	https://doi.org/10.1109/isbi45749.2020.9098387
+PMC ID	PMC7768981
+
+Biosample	Biosample-1
+Title	In utero mouse embryos
+Biological entity	mouse embryo volumes
+Description	mouse embryo volumes which were acquired in utero and in vivo from pregnant mice (10-14.5 days after mating)
+Intrinsic variable	Homozygous GFP integration into mitotic genes
+
+Organism	Organism-1	Biosample-1
+Scientific name	mus musculus
+Common name	mouse
+NCBI taxon ID	NCBI:txid10090
+
+Specimen	Specimen-1
+Title	HFU sample preparation
+Sample Preparation Protocol	Unknown
+
+Image Acquisition	Image Acquisition-1
+Title	Ultrasound Image Acquisition
+Imaging Instrument	High frequency ultrasound 5-element 40-MHz annular array
+Image Acquisition Parameters	The dimensions of the HFU volumes vary from 150 x 161 x 81 to 210 x 281 x 282 voxels and the voxel size is 50 x 50 x 50 μm
+
+Imaging Method	Imaging Method-1	Image Acquisition-1
+Ontology Value	Echography
+Ontology Name	EDAM
+Ontology Term ID	http://edamontology.org/topic_3954
+
+Image Correlation	Image Correlation-1
+Title	Image Correlation
+Spatial and temporal alignment	An alignment algorithm is used.
+Fiducials used	Fiducials were randomly dropped into sample
+Transformation matrix	Matrix is provided as a table.
+
+Image Analysis	Image-Analysis-1
+Title	Image Analysis
+Image Analysis Overview	Analysis is done with custom tensorflow models. The code is on github. Linked in Links field.
+
+Study Component	Study Component-1
+Name	Ultrasound images
+Description	Ultrasound images and correlation and analysis
+
+Associations		Study Component-1
+Biosample	In utero mouse embryos
+Specimen	HFU sample preparation
+Image acquisition	Ultrasound Image Acquisition
+Image Correlation	Image Correlation
+Image Analysis	Image Analysis
+
