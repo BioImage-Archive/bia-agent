@@ -11,7 +11,7 @@ from .files import FileCollection
 from .rembi2pagetab import rembi_container_to_pagetab
 from .utils import (create_study_component,
                     create_annotations_section)
-from .rembi import parse_yaml
+from .rembi import parse
 
 
 logger = logging.getLogger("bia-agent")
@@ -86,7 +86,7 @@ def generate_filelists(bia_submission):
 
 
 def generate_bst_submission(bia_submission: BIASubmission, accession_id: Optional[str], skip_filelists: bool = False):
-    rembi_container = parse_yaml(bia_submission.submission_dirpath/"rembi-metadata.yaml")
+    rembi_container = parse(bia_submission.submission_dirpath/"rembi-metadata.yaml")
 
     root_path = f"{bia_submission.submission_dirpath.name}/files"
     bst_submission = rembi_container_to_pagetab(rembi_container, accession_id=accession_id, root_path=root_path)

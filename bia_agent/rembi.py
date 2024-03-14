@@ -12,6 +12,8 @@ from bia_rembi_models.correlation import ImageCorrelation
 from bia_rembi_models.analysis import ImageAnalysis
 from bia_mifa_models.pydantic_model import Annotations, Version
 from bia_rembi_models.study_component import StudyComponent
+from pathlib import Path
+import json
 
 class REMBIAssociation(BaseModel):
     biosample_id: str
@@ -35,6 +37,20 @@ class REMBIContainer(BaseModel):
     study_component: Dict[str, StudyComponent] = {}
 
 
+def parse(fpath):
+    if not Path(fpath).is_file():
+        exit(f"{fpath} is not a file")
+
+    
+    match Path(fpath).suffix:
+        case '.json':
+            return parse_json(fpath)
+        case '.yaml':
+            return parse_yaml(fpath)
+        case _:
+            exit(f'{fpath} is not a json or yaml')
+
+            
 def parse_yaml(fpath):
     yaml = YAML()
 
@@ -44,5 +60,14 @@ def parse_yaml(fpath):
     except (ScannerError, ParserError) as e:
         exit(f"Invalid YAML: {str(e)}")
 
+    return REMBIContainer.parse_obj(raw_object)
+
+def parse_json(fpath):
+
+    try:
+        with open(fpath) as file:
+            raw_object = json.load(file)
+    except json.JSONDecodeError as e:
+        exit(f"Invalid JSON: {str(e)}")
 
     return REMBIContainer.parse_obj(raw_object)
