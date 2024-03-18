@@ -1,6 +1,8 @@
 import logging
 import pathlib
 from typing import Optional
+from typing_extensions import Annotated
+from enum import Enum
 
 import typer
 
@@ -18,6 +20,10 @@ logging.basicConfig(level=logging.INFO)
 
 
 app = typer.Typer()
+
+class OutputFormat(str, Enum):
+    TSV = 'tsv'
+    JSON = 'json'
 
 
 @app.command()
@@ -120,28 +126,50 @@ def check_pagetab_json(json_fpath: pathlib.Path):
 
 
 @app.command()
-def rembi_to_pagetab(rembi_fpath: pathlib.Path, accession_id: str):
+def rembi_to_pagetab(
+    rembi_fpath: pathlib.Path, 
+    accession_id: str,
+    outputFormat: Annotated[OutputFormat, typer.Option("-f", case_sensitive=False)] = OutputFormat.TSV.value
+):
     rembi_container = parse(rembi_fpath)
 
     bst_submission = rembi_container_to_pagetab(rembi_container, accession_id=accession_id, root_path=None)
 
-    print(bst_submission.as_tsv())
+    if outputFormat == OutputFormat.TSV:
+        print(bst_submission.as_tsv())
+    elif outputFormat == OutputFormat.JSON:
+        print(bst_submission.json())
+
 
 @app.command()
-def rembi_mifa_to_pagetab(rembi_mifa_fpath: pathlib.Path, accession_id: str):
+def rembi_mifa_to_pagetab(
+    rembi_mifa_fpath: pathlib.Path, 
+    accession_id: str,
+    outputFormat: Annotated[OutputFormat, typer.Option("-f", case_sensitive=False)] = OutputFormat.TSV.value
+):
     rembi_mifa_container = parse(rembi_mifa_fpath)
 
     bst_submission = rembi_mifa_container_to_pagetab(rembi_mifa_container, accession_id=accession_id, root_path=None)
     
-    print(bst_submission.as_tsv())
+    if outputFormat == OutputFormat.TSV:
+        print(bst_submission.as_tsv())
+    elif outputFormat == OutputFormat.JSON:
+        print(bst_submission.json())
 
 @app.command()
-def mifa_to_pagetab(mifa_fpath: pathlib.Path, accession_id: str):
+def mifa_to_pagetab(
+    mifa_fpath: pathlib.Path, 
+    accession_id: str,
+    outputFormat: Annotated[OutputFormat, typer.Option("-f", case_sensitive=False)] = OutputFormat.TSV.value
+):
     mifa_container = parse(mifa_fpath)
 
     bst_submission = mifa_container_to_pagetab(mifa_container, accession_id=accession_id, root_path=None)
     
-    print(bst_submission.as_tsv())
+    if outputFormat == OutputFormat.TSV:
+        print(bst_submission.as_tsv())
+    elif outputFormat == OutputFormat.JSON:
+        print(bst_submission.json())
 
 
 if __name__ == "__main__":

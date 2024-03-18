@@ -1,0 +1,540 @@
+{
+    "accno": "S-BIADXXX",
+    "section": {
+        "type": "Study",
+        "accno": null,
+        "attributes": [
+            {
+                "name": "Description",
+                "value": "A dataset consisting of 231 embryonic mice High Frequency Ultrasound volumes which were acquired in utero and in vivo from pregnant mice. Another submission contains the body and brain volume segmentation masks of these images.",
+                "reference": false,
+                "nmqual": [],
+                "valqual": []
+            },
+            {
+                "name": "Keyword",
+                "value": "Image segmentation",
+                "reference": false,
+                "nmqual": [],
+                "valqual": []
+            },
+            {
+                "name": "Keyword",
+                "value": "high-frequency ultrasound",
+                "reference": false,
+                "nmqual": [],
+                "valqual": []
+            },
+            {
+                "name": "Keyword",
+                "value": "mouse embryo",
+                "reference": false,
+                "nmqual": [],
+                "valqual": []
+            },
+            {
+                "name": "Keyword",
+                "value": "volumetric deep learning",
+                "reference": false,
+                "nmqual": [],
+                "valqual": []
+            }
+        ],
+        "subsections": [
+            {
+                "type": "author",
+                "accno": null,
+                "attributes": [
+                    {
+                        "name": "Name",
+                        "value": "Ziming Qiu",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "Role",
+                        "value": "submitter",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "affiliation",
+                        "value": "o1",
+                        "reference": true,
+                        "nmqual": [],
+                        "valqual": []
+                    }
+                ],
+                "subsections": [],
+                "links": [],
+                "files": []
+            },
+            {
+                "type": "author",
+                "accno": null,
+                "attributes": [
+                    {
+                        "name": "Name",
+                        "value": "Matthew Hartley",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "Role",
+                        "value": "data curator",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "affiliation",
+                        "value": "o2",
+                        "reference": true,
+                        "nmqual": [],
+                        "valqual": []
+                    }
+                ],
+                "subsections": [],
+                "links": [],
+                "files": []
+            },
+            {
+                "type": "organization",
+                "accno": "o1",
+                "attributes": [
+                    {
+                        "name": "Name",
+                        "value": "Department of Electrical and Computer Engineering",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "Address",
+                        "value": "New York University, New York, USA",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    }
+                ],
+                "subsections": [],
+                "links": [],
+                "files": []
+            },
+            {
+                "type": "organization",
+                "accno": "o2",
+                "attributes": [
+                    {
+                        "name": "Name",
+                        "value": "European Molecular Biology Laboratory, European Bioinformatics Institute",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "Address",
+                        "value": null,
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    }
+                ],
+                "subsections": [],
+                "links": [],
+                "files": []
+            },
+            {
+                "type": "Publication",
+                "accno": null,
+                "attributes": [
+                    {
+                        "name": "Title",
+                        "value": "DEEP MOUSE: AN END-TO-END AUTO-CONTEXT REFINEMENT FRAMEWORK FOR BRAIN VENTRICLE & BODY SEGMENTATION IN EMBRYONIC MICE ULTRASOUND VOLUMES.",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "Year",
+                        "value": "2020",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "Authors",
+                        "value": "Qiu Z, Das W, Wang C, Langerman J, Nair N, Aristiz\u00e1bal O, Mamou J, Turnbull DH, Ketterling JA, Wang Y",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "DOI",
+                        "value": "https://doi.org/10.1109/isbi45749.2020.9098387",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "PMC ID",
+                        "value": "PMC7768981",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    }
+                ],
+                "subsections": [],
+                "links": [],
+                "files": []
+            },
+            {
+                "type": "Biosample",
+                "accno": "Biosample-1",
+                "attributes": [
+                    {
+                        "name": "Title",
+                        "value": "In utero mouse embryos",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "Biological entity",
+                        "value": "mouse embryo volumes",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "Description",
+                        "value": "mouse embryo volumes which were acquired in utero and in vivo from pregnant mice (10-14.5 days after mating)",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "Intrinsic variable",
+                        "value": "Homozygous GFP integration into mitotic genes",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    }
+                ],
+                "subsections": [
+                    {
+                        "type": "Organism",
+                        "accno": "Organism-1",
+                        "attributes": [
+                            {
+                                "name": "Scientific name",
+                                "value": "mus musculus",
+                                "reference": false,
+                                "nmqual": [],
+                                "valqual": []
+                            },
+                            {
+                                "name": "Common name",
+                                "value": "mouse",
+                                "reference": false,
+                                "nmqual": [],
+                                "valqual": []
+                            },
+                            {
+                                "name": "NCBI taxon ID",
+                                "value": "NCBI:txid10090",
+                                "reference": false,
+                                "nmqual": [],
+                                "valqual": []
+                            }
+                        ],
+                        "subsections": [],
+                        "links": [],
+                        "files": []
+                    }
+                ],
+                "links": [],
+                "files": []
+            },
+            {
+                "type": "Specimen",
+                "accno": "Specimen-1",
+                "attributes": [
+                    {
+                        "name": "Title",
+                        "value": "HFU sample preparation",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "Sample Preparation Protocol",
+                        "value": "Unknown",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    }
+                ],
+                "subsections": [],
+                "links": [],
+                "files": []
+            },
+            {
+                "type": "Image Acquisition",
+                "accno": "Image Acquisition-1",
+                "attributes": [
+                    {
+                        "name": "Title",
+                        "value": "Ultrasound Image Acquisition",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "Imaging Instrument",
+                        "value": "High frequency ultrasound 5-element 40-MHz annular array",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "Image Acquisition Parameters",
+                        "value": "The dimensions of the HFU volumes vary from 150 x 161 x 81 to 210 x 281 x 282 voxels and the voxel size is 50 x 50 x 50 \u03bcm",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    }
+                ],
+                "subsections": [
+                    {
+                        "type": "Imaging Method",
+                        "accno": "Imaging Method-1",
+                        "attributes": [
+                            {
+                                "name": "Ontology Value",
+                                "value": "Echography",
+                                "reference": false,
+                                "nmqual": [],
+                                "valqual": []
+                            },
+                            {
+                                "name": "Ontology Name",
+                                "value": "EDAM",
+                                "reference": false,
+                                "nmqual": [],
+                                "valqual": []
+                            },
+                            {
+                                "name": "Ontology Term ID",
+                                "value": "http://edamontology.org/topic_3954",
+                                "reference": false,
+                                "nmqual": [],
+                                "valqual": []
+                            }
+                        ],
+                        "subsections": [],
+                        "links": [],
+                        "files": []
+                    }
+                ],
+                "links": [],
+                "files": []
+            },
+            {
+                "type": "Image Correlation",
+                "accno": "Image Correlation-1",
+                "attributes": [
+                    {
+                        "name": "Title",
+                        "value": "Image Correlation",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "Spatial and temporal alignment",
+                        "value": "An alignment algorithm is used.",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "Fiducials used",
+                        "value": "Fiducials were randomly dropped into sample",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "Transformation matrix",
+                        "value": "Matrix is provided as a table.",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    }
+                ],
+                "subsections": [],
+                "links": [],
+                "files": []
+            },
+            {
+                "type": "Image Analysis",
+                "accno": "Image-Analysis-1",
+                "attributes": [
+                    {
+                        "name": "Title",
+                        "value": "Image Analysis",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "Image Analysis Overview",
+                        "value": "Analysis is done with custom tensorflow models. The code is on github. Linked in Links field.",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    }
+                ],
+                "subsections": [],
+                "links": [],
+                "files": []
+            },
+            {
+                "type": "Study Component",
+                "accno": "Study Component-1",
+                "attributes": [
+                    {
+                        "name": "Name",
+                        "value": "Ultrasound images",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    },
+                    {
+                        "name": "Description",
+                        "value": "Ultrasound images and correlation and analysis",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    }
+                ],
+                "subsections": [
+                    {
+                        "type": "Associations",
+                        "accno": null,
+                        "attributes": [
+                            {
+                                "name": "Biosample",
+                                "value": "In utero mouse embryos",
+                                "reference": false,
+                                "nmqual": [],
+                                "valqual": []
+                            },
+                            {
+                                "name": "Specimen",
+                                "value": "HFU sample preparation",
+                                "reference": false,
+                                "nmqual": [],
+                                "valqual": []
+                            },
+                            {
+                                "name": "Image acquisition",
+                                "value": "Ultrasound Image Acquisition",
+                                "reference": false,
+                                "nmqual": [],
+                                "valqual": []
+                            },
+                            {
+                                "name": "Image Correlation",
+                                "value": "Image Correlation",
+                                "reference": false,
+                                "nmqual": [],
+                                "valqual": []
+                            },
+                            {
+                                "name": "Image Analysis",
+                                "value": "Image Analysis",
+                                "reference": false,
+                                "nmqual": [],
+                                "valqual": []
+                            }
+                        ],
+                        "subsections": [],
+                        "links": [],
+                        "files": []
+                    }
+                ],
+                "links": [],
+                "files": []
+            }
+        ],
+        "links": [
+            {
+                "url": "https://www.ebi.ac.uk/biostudies/bioimages/studies/S-BSST401",
+                "attributes": [
+                    {
+                        "name": "Description",
+                        "value": "Original submission (not curated)",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    }
+                ]
+            },
+            {
+                "url": "https://github.com/BioImage-Archive",
+                "attributes": [
+                    {
+                        "name": "Description",
+                        "value": "Github link for the Image Analysis",
+                        "reference": false,
+                        "nmqual": [],
+                        "valqual": []
+                    }
+                ]
+            }
+        ],
+        "files": []
+    },
+    "attributes": [
+        {
+            "name": "Title",
+            "value": "Embryonic mice ultrasound volumes with body and brain volume segmentation masks",
+            "reference": false,
+            "nmqual": [],
+            "valqual": []
+        },
+        {
+            "name": "ReleaseDate",
+            "value": "2023-05-10",
+            "reference": false,
+            "nmqual": [],
+            "valqual": []
+        },
+        {
+            "name": "AttachTo",
+            "value": "BioImages",
+            "reference": false,
+            "nmqual": [],
+            "valqual": []
+        },
+        {
+            "name": "Template",
+            "value": "BioImages.v4",
+            "reference": false,
+            "nmqual": [],
+            "valqual": []
+        },
+        {
+            "name": "REMBI_PageTab Conversion Script Version",
+            "value": "1.0.0",
+            "reference": false,
+            "nmqual": [],
+            "valqual": []
+        }
+    ]
+}
