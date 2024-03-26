@@ -1,0 +1,70 @@
+study:
+  title: "ZeroCostDL4Mic - YoloV2 example training and test dataset"
+  description: ""
+  private_until_date: "2024-07-17"
+  keywords:
+    - Deep learning
+    - Object detection
+    - Image segmentation
+    - Stardist
+    - Microscopy
+  authors:
+    - first_name: Johanna
+      last_name: Jukkala
+      role: Submitter
+      affiliation:
+        name: ""
+    - first_name: Craig
+      last_name: Russell
+      role: Data Curator
+      affiliation:
+        name: ""
+  funding:
+    funding_statement: "Supported by the Academy of Finland, the Sigrid Juselius Foundation, Åbo Akademi University Research Foundation (CoE CellMech), and strategic funding to Åbo Akademi University from Drug Discovery and Diagnostics."
+  publications:
+    - doi: "https://doi.org/10.5281/zenodo.3715492"
+      title: "ZeroCostDL4Mic: an open platform to use Deep-Learning in Microscopy"
+      year: 2020
+  links:
+    - link_url: "https://zenodo.org/records/3941908"
+      link_description: "Original submission (not curated)"
+  acknowledgements:
+  rembi_version: '1.5'
+biosamples:
+  Biosample-1:
+    description: "Paired microscopy images (fluorescence) and corresponding masks"
+    biological_entity: "Fluorescence microscopy (SiR-DNA) and masks obtained via manual segmentation"
+    organism:
+      scientific_name: ""
+      ncbi_taxon: ""
+specimens:
+  Specimen-1:
+    description: ""
+    sample_preparation: ""
+    acquisitions:
+  Image Acquisition-1:
+    sample_preparation: ""
+    imaging_method:
+      value: "Echography"
+      ontology_id: "http://edamontology.org/topic_3954"
+      ontology_name: "EDAM"
+    description: ""
+annotations:
+  Annotations:
+    annotation_overview: ""
+    annotation_method: ""
+version:
+  Annotations:
+    version: "1.0.0"
+    timestamp: 2020-07-17T00:00:00Z
+    changes: ""
+study_component:
+  Study Component-1:
+    name: "Paired microscopy images (fluorescence) and corresponding masks"
+    description: ""
+    rembi_version: '1.5'
+associations:
+  Study Component-1:
+    biosample_id: "Biosample-1"
+    specimen_id: "Specimen-1"
+    acquisition_id: "Image Acquisition-1"
