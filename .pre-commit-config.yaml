@@ -1,0 +1,22 @@
+fail_fast: true
+
+repos:
+  - repo: local
+    hooks:
+      - id: poetry-lock
+        name: Poetry Lock
+        entry: poetry lock
+        language: system
+        always_run: true
+        # stages: [pre-commit]
+        files: poetry.lock
+      - id: black
+        name: black
+        entry: black
+        language: system
+        types: [file, python]
+      - id: isort
+        name: isort
+        entry: isort
+        language: system
+        types: [file, python]
