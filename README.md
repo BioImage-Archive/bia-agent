@@ -27,3 +27,12 @@ Converting MIFA annotations YAML to PageTab
 Using poetry:
 
     poetry run bia-agent rembi-mifa-to-pagetab examples/mifa-metadata.yaml S-BIADXXX
+
+
+## Dev usage
+
+### Install pre-commit hooks
+
+```bash
+    poetry run pre-commit install
+```

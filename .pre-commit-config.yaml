@@ -8,8 +8,9 @@ repos:
         entry: poetry lock
         language: system
         always_run: true
+        pass_filenames: false  # Ensure no filenames are passed to the command
         # stages: [pre-commit]
-        files: poetry.lock
+        # files: poetry.lock
       - id: black
         name: black
         entry: black
