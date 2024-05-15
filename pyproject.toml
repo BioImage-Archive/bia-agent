@@ -23,6 +23,13 @@ bia_mifa_models = { git = "https://github.com/BioImage-Archive/bia-mifa-models.g
 # bia-rembi-models = { git = "https://github.com/BioImage-Archive/bia-rembi-models.git", branch = "main" }
 
 
+[tool.poetry.group.dev.dependencies]
+pytest-cov = "^5.0.0"
+black = "^24.4.2"
+pyright = "^1.1.361"
+pooch = "^1.8.1"
+pre-commit = "^3.7.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
