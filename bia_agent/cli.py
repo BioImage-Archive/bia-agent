@@ -13,7 +13,7 @@ from .transfer import copy_single_file, copy_all, verify
 from .rembi import parse
 from .rembi2pagetab import rembi_container_to_pagetab
 from .mifa2pagetab import rembi_mifa_container_to_pagetab, mifa_container_to_pagetab
-
+from .gigaEM2pagetab import build_container
 
 logger = logging.getLogger("bia-agent")
 logging.basicConfig(level=logging.INFO)
@@ -24,6 +24,7 @@ app = typer.Typer()
 class OutputFormat(str, Enum):
     TSV = 'tsv'
     JSON = 'json'
+    YAML = 'yaml'
 
 
 @app.command()
@@ -129,7 +130,10 @@ def check_pagetab_json(json_fpath: pathlib.Path):
 def rembi_to_pagetab(
     rembi_fpath: pathlib.Path, 
     accession_id: str,
-    outputFormat: Annotated[OutputFormat, typer.Option("-f", case_sensitive=False)] = OutputFormat.TSV.value
+        outputFormat: Annotated[        
+        OutputFormat,
+        typer.Option("--format", "-f", help="Output format", case_sensitive=False)
+    ] = OutputFormat.TSV,
 ):
     rembi_container = parse(rembi_fpath)
 
@@ -145,7 +149,10 @@ def rembi_to_pagetab(
 def rembi_mifa_to_pagetab(
     rembi_mifa_fpath: pathlib.Path, 
     accession_id: str,
-    outputFormat: Annotated[OutputFormat, typer.Option("-f", case_sensitive=False)] = OutputFormat.TSV.value
+    outputFormat: Annotated[        
+        OutputFormat,
+        typer.Option("--format", "-f", help="Output format", case_sensitive=False)
+    ] = OutputFormat.TSV,
 ):
     rembi_mifa_container = parse(rembi_mifa_fpath)
 
@@ -160,7 +167,10 @@ def rembi_mifa_to_pagetab(
 def mifa_to_pagetab(
     mifa_fpath: pathlib.Path, 
     accession_id: str,
-    outputFormat: Annotated[OutputFormat, typer.Option("-f", case_sensitive=False)] = OutputFormat.TSV.value
+        outputFormat: Annotated[        
+        OutputFormat,
+        typer.Option("--format", "-f", help="Output format", case_sensitive=False)
+    ] = OutputFormat.TSV,
 ):
     mifa_container = parse(mifa_fpath)
 
@@ -170,6 +180,27 @@ def mifa_to_pagetab(
         print(bst_submission.as_tsv())
     elif outputFormat == OutputFormat.JSON:
         print(bst_submission.json())
+
+@app.command()
+def gigaem_to_pagetab(
+    im_path: pathlib.Path,
+    ann_path: pathlib.Path,
+    study_path: pathlib.Path,
+    outputFormat: Annotated[        
+        OutputFormat,
+        typer.Option("--format", "-f", help="Output format", case_sensitive=False)
+    ] = OutputFormat.TSV,
+):
+
+    rembi_mifa_container = build_container(im_path,ann_path,study_path)
+
+    bst_submission = rembi_mifa_container_to_pagetab(rembi_mifa_container, accession_id='S-BIADXXXX', root_path=None)
+    
+    if outputFormat == OutputFormat.TSV:
+        print(bst_submission.as_tsv())
+    elif outputFormat == OutputFormat.JSON:
+        print(bst_submission.json())
+
 
 
 if __name__ == "__main__":
