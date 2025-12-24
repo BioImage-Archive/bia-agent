@@ -1,17 +1,5 @@
 import pandas as pd
-from typing import Dict
-import json
-
 from .rembi import REMBIContainer
-from bia_rembi_models.study import Study
-from bia_rembi_models.sample import Biosample
-from bia_rembi_models.specimen import Specimen
-from bia_rembi_models.acquisition import ImageAcquisition
-from bia_rembi_models.correlation import ImageCorrelation
-from bia_rembi_models.analysis import ImageAnalysis
-from bia_mifa_models.pydantic_model import Annotations, Version
-from bia_rembi_models.study_component import StudyComponent
-
 
 study_mapping = {
     # simple fields (take first non-null value)
@@ -76,7 +64,7 @@ im_mapping = {
     # specimen simple fields (take first non-null value)
     "sample_preparation": ("specimens.First specimen.sample_preparation", str, True),
 
-    # nested object inside bimage acquisition
+    # nested object inside image acquisition
     "imaging_method": ("acquisitions.First acquisition.imaging_method.value", str, True),
 
     # image acquisition simple fields (take first non-null value)
@@ -149,7 +137,7 @@ def map_dataframe_to_dict(df: pd.DataFrame, mapping: dict, *, strict=True):
         required = rest[0] if rest else False
         path_parts = split_path(target)
 
-        # ---- CASE 1: list of strings (keywords[], annotation_type[]) ----
+        # ---- CASE 1: list of strings (e.g. keywords[], annotation_type[]) ----
         if path_parts[-1][1] and not any(is_list for _, is_list in path_parts[:-1]):
             values = (
                 df[csv_col]
@@ -224,17 +212,21 @@ def build_container(study_path, im_path, ann_path):
     im_df.columns = im_df.columns.str.strip() # remove trailing spaces in column names
     
     # we will handle only one study component. If all fields are the same in the csv for a column, we will use that information.
-    # otherwise we will just have that info on the file list
+    # otherwise we will just have that info on the file list and have a generic "multiple (see file list)" in/ the study/annotation component
     new_im_df = pd.DataFrame()
+    REQUIRED_COLS = {'organism', 'sample_preparation', 'imaging_method', 'imaging_instrument', 'image_acquisition_parameters','annotation_overview','annotation_type','annotation_method','organ_system'}
     for col in im_df.columns:
         unique_vals = im_df[col].dropna().unique()
         if len(unique_vals) == 1:
             # Keep the column with its single value
             new_im_df[col] = [unique_vals[0]]
+        elif col in REQUIRED_COLS:
+                new_im_df[col] = 'multiple (see file list)'
         else:
             new_im_df[col] = [pd.NA]
-
-    new_im_df["biological_entity"] = new_im_df["organ_system"].astype(str) + ", " + new_im_df["tissue_location"].astype(str) + ", " + new_im_df["cell_type"].astype(str) # we need to create the biological entity from other fields
+    
+    # we need to create the biological entity from other fields
+    new_im_df["biological_entity"] = new_im_df["organ_system"].astype(str) + ", " + new_im_df["tissue_location"].astype(str) + ", " + new_im_df["cell_type"].astype(str) 
     data.update(map_dataframe_to_dict(new_im_df, im_mapping))
     
     # set default values
@@ -259,14 +251,16 @@ def build_container(study_path, im_path, ann_path):
     ann_df = ann_df[~ann_df.apply(lambda row: row.astype(str).str.startswith("#").any(), axis=1)]  # remove comments
     ann_df.columns = ann_df.columns.str.strip() # remove trailing spaces in column names
 
-    # we will handle only one annotations component. If all fields are the same in the csv for a column, we will use that information.
-    # otherwise we will just have that info on the file list
+    # we will handle only one study component. If all fields are the same in the csv for a column, we will use that information.
+    # otherwise we will just have that info on the file list and have a generic "multiple (see file list)" i the study/annotation component
     new_ann_df = pd.DataFrame()
     for col in ann_df.columns:
         unique_vals = ann_df[col].dropna().unique()
         if len(unique_vals) == 1:
             # Keep the column with its single value
             new_ann_df[col] = [unique_vals[0]]
+        elif col in REQUIRED_COLS:
+            new_ann_df[col] = 'multiple (see file list)'
         else:
             new_ann_df[col] = [pd.NA]
     
@@ -311,7 +305,7 @@ def build_container(study_path, im_path, ann_path):
 
 
 '''#delete
-im_path = "giga-em/GIGA-EM_metadata_SynapseNet_Source_Image_metadata.csv"
+im_path = "giga-em/Image_data_many_sc.csv"
 ann_path = "giga-em/GIGA-EM_metadata_SynapseNet_Annotation_metadata.csv"
 study_path = "giga-em/GIGA-EM_metadata_SynapseNet_Study_metadata.csv"
 outdir = "giga-em/test_results"
