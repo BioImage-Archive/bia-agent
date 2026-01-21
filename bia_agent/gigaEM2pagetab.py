@@ -54,9 +54,10 @@ study_mapping = {
 im_mapping = {
     # biosample simple fields (take first non-null value)
     "biological_entity": ("biosamples.First biosample.biological_entity", str, True),
-    "intrinsic_variables": ("biosamples.First biosample.intrinsic_variables", str, False),
-    "extrinsic_variables": ("biosamples.First biosample.extrinsic_variables", str, False),
-    "experimental_variables": ("biosamples.First biosample.experimental_variables", str, False),
+    # these need to be lists
+    "intrinsic_variables": ("biosamples.First biosample.intrinsic_variables", str, False, True),
+    "extrinsic_variables": ("biosamples.First biosample.extrinsic_variables", str, False, True),
+    "experimental_variables": ("biosamples.First biosample.experimental_variables", str, False, True),
 
     # nested object inside biosample
     "organism": ("biosamples.First biosample.organism.scientific_name", str, True),
@@ -162,6 +163,11 @@ def map_dataframe_to_dict(df: pd.DataFrame, mapping: dict, *, strict=True):
                 continue
 
             value = dtype(series.iloc[0]) if dtype else series.iloc[0]
+
+            as_list = rest[1] if len(rest) > 1 else False
+            if as_list:
+                value = [value]
+
             set_scalar(output, path_parts, value)
             continue
 
@@ -214,19 +220,27 @@ def build_container(study_path, im_path, ann_path):
     # we will handle only one study component. If all fields are the same in the csv for a column, we will use that information.
     # otherwise we will just have that info on the file list and have a generic "multiple (see file list)" in/ the study/annotation component
     new_im_df = pd.DataFrame()
-    REQUIRED_COLS = {'organism', 'sample_preparation', 'imaging_method', 'imaging_instrument', 'image_acquisition_parameters','annotation_overview','annotation_type','annotation_method','organ_system'}
+    REQUIRED_COLS = {'organism', 'sample_preparation', 'imaging_method', 'imaging_instrument', 'image_acquisition_parameters','annotation_overview','annotation_type','annotation_method','organ_system', 'intrinsic_variables','extrinsic_variables', 'experimental_variables','annotation_confidence_level','annotation_criteria','tissue_location','cell_type'}
     for col in im_df.columns:
         unique_vals = im_df[col].dropna().unique()
         if len(unique_vals) == 1:
             # Keep the column with its single value
             new_im_df[col] = [unique_vals[0]]
-        elif col in REQUIRED_COLS:
+        elif len(unique_vals) > 1 and col in REQUIRED_COLS:
                 new_im_df[col] = 'multiple (see file list)'
         else:
             new_im_df[col] = [pd.NA]
     
     # we need to create the biological entity from other fields
-    new_im_df["biological_entity"] = new_im_df["organ_system"].astype(str) + ", " + new_im_df["tissue_location"].astype(str) + ", " + new_im_df["cell_type"].astype(str) 
+
+    row = new_im_df.iloc[0]
+
+    if "multiple (see file list)" in row[["organ_system", "tissue_location", "cell_type"]].values:
+        new_im_df.loc[0, "biological_entity"] = "multiple (see file list)"
+    else:
+        new_im_df.loc[0, "biological_entity"] = ", ".join(
+            row[["organ_system", "tissue_location", "cell_type"]].astype(str)
+        )
     data.update(map_dataframe_to_dict(new_im_df, im_mapping))
     
     # set default values
@@ -259,7 +273,7 @@ def build_container(study_path, im_path, ann_path):
         if len(unique_vals) == 1:
             # Keep the column with its single value
             new_ann_df[col] = [unique_vals[0]]
-        elif col in REQUIRED_COLS:
+        elif len(unique_vals) > 1 and col in REQUIRED_COLS:
             new_ann_df[col] = 'multiple (see file list)'
         else:
             new_ann_df[col] = [pd.NA]
@@ -297,6 +311,7 @@ def build_container(study_path, im_path, ann_path):
 
 
     data = prune_empty(data) # remove some cases where there are empty cells
+
     container = REMBIContainer.parse_obj(data)
     
     return container
