@@ -535,6 +535,13 @@
             "reference": false,
             "nmqual": [],
             "valqual": []
+        },
+        {
+            "name": "DOI",
+            "value": null,
+            "reference": false,
+            "nmqual": [],
+            "valqual": []
         }
     ]
 }

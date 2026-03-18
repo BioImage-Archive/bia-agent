@@ -175,7 +175,8 @@ def rembi_study_to_pagetab_submission(rembi_study: Study, accession_id: Optional
             Attribute(name="ReleaseDate", value=rembi_study.private_until_date.strftime("%Y-%m-%d")),
             Attribute(name="AttachTo", value=collection),
             Attribute(name="Template", value=template),
-            Attribute(name="REMBI_PageTab Conversion Script Version", value=VERSION)
+            Attribute(name="REMBI_PageTab Conversion Script Version", value=VERSION),
+            Attribute(name="DOI", value=None) #null DOI field for automatic DOI generation or preservation of the existing DOI. 
         ],
         section=study_section,
     )
