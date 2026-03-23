@@ -4,6 +4,7 @@ ReleaseDate	2024-08-02
 AttachTo	BioImages
 Template	BioImages.MIFA.v1
 REMBI_PageTab Conversion Script Version	1.0.0
+DOI	
 
 Study
 Description	This dataset contains annotated fluorescent nuclear images of normal or cancer cells from different tissue origins and sample preparation types,  and can be used to train machine-learning based nuclear image segmentation algorithms. It consists of 79 expert-annotated fluorescence images  of immuno and DAPI stained samples containing 7813 nuclei in total. In addition, the dataset is heterogenous in aspects such as type of preparation,  imaging modality, magnification, signal-to-noise ratio and other technical aspects. Relevant parameters, e.g. diagnosis, magnification,  signal-to-noise ratio and modality with respect to the type of preparation are provided in the file list. The images are derived from one Schwann cell stroma-rich tissue (from a ganglioneuroblastoma) cryosection (10 images/2773 nuclei), seven neuroblastoma (NB) patients (19 images/931 nuclei), one Wilms patient (1 image/102 nuclei),  two NB cell lines (CLB-Ma, STA-NB10) (8 images/1785 nuclei) and a human keratinocyte cell line (HaCaT) (41 images/2222 nuclei).
