@@ -1,0 +1,84 @@
+Submission	S-BIADXXXX
+Title	This is our brilliant study
+ReleaseDate	2029-12-25
+AttachTo	BioImages
+Template	BioImages.MIFA.v1
+REMBI_PageTab Conversion Script Version	1.0.0
+
+Study
+Description	Just a very cool dataset
+Keyword	Drosophila
+Keyword	mitochondria
+Acknowledgements	Any people or groups that should be acknowledged as part of the dataset.
+Funding statement	A description of how the data generation was funded.
+
+Link	https://en.wikipedia.org/wiki/Josiah_S._Carberry
+Description	lab webpage
+
+author
+Name	Josiah Carberry
+E-mail	email@example.con
+Role	principal investigator
+ORCID	XXXYYY
+<affiliation>	o1
+
+organization	o1
+Name	Brown University
+Address	Providence, Rhode Island, United States
+
+Publication
+Title	Title of associated publication.
+Year	2025
+Authors	Carberry and Grayson
+
+Funding
+Agency	European Comission
+grant_id	ECgrant123
+
+Biosample	Biosample-1
+Title	First biosample
+Biological entity	embryonic epithelium, germ-band, epithelial
+Intrinsic variable	homozygous mutation of abl
+Extrinsic variable	cridanimod
+Experimental variable	genotype
+
+Organism	Organism-1	Biosample-1
+Scientific name	Drosophila melanogaster
+Common name	
+NCBI taxon ID	
+
+Specimen	Specimen-1
+Title	First specimen
+Sample Preparation Protocol	The waffle method1 was used for grid preparation. Spore concentrations frozen per grid were as follows: 5.7 x 107 spores/µL for dataset 1; 8 x 105 spores/µL for dataset 2; 1.3 x 108 spores/µL for dataset 3. 5 µL of sample was applied to each waffle grid assembly, and the sample was frozen using Wholwend Compact 01 high pressure freezer, with a pressure of 2,100 bar. All waffled gridswere carefully clipped prior to milling
+
+Image Acquisition	Image Acquisition-1
+Title	First acquisition
+Imaging Instrument	multiple (see file list)
+Image Acquisition Parameters	multiple (see file list)
+
+Imaging Method	Imaging Method-1	Image Acquisition-1
+Ontology Value	focussed ion beam scanning electron microscopy (FIB-SEM)
+Ontology Name	
+Ontology Term ID	
+
+Annotations	Annotations-1
+Title	Annotations
+Annotation Overview	segmentation masks where created manually by scientific experts using Napari
+Annotation Type	segmentation_mask
+Annotation Method	multiple (see file list)
+Annotation Confidence Level	****
+Annotation Criteria	only intact mytochondria were annotated
+
+Version		Annotations-1
+Annotation version	v1.0
+Version timestamp	2025-12-23 13:45:21
+
+Study Component	Study Component-1
+Name	Imaging data
+Description	Raw images used for annotation
+
+Associations		Study Component-1
+Biosample	First biosample
+Specimen	First specimen
+Image acquisition	First acquisition
+

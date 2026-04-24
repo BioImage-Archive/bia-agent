@@ -28,6 +28,13 @@ Using poetry:
 
     poetry run bia-agent rembi-mifa-to-pagetab examples/mifa-metadata.yaml S-BIADXXX
 
+Converting giga-EM spreadsheet to PageTab
+-------------------------------------------
+
+Using poetry:
+
+    poetry run bia-agent gigaem-to-pagetab examples/giga-em_study.csv examples/giga-em_images.csv examples/giga-em_annotations.csv
+
 
 ## Dev usage
 
