@@ -8,6 +8,7 @@ REMBI_PageTab Conversion Script Version	1.0.0
 Study
 Description	Just a very cool dataset
 Keyword	Drosophila
+Keyword	Segmentation
 Keyword	mitochondria
 Acknowledgements	Any people or groups that should be acknowledged as part of the dataset.
 Funding statement	A description of how the data generation was funded.
@@ -15,11 +16,20 @@ Funding statement	A description of how the data generation was funded.
 Link	https://en.wikipedia.org/wiki/Josiah_S._Carberry
 Description	lab webpage
 
+Link	https://en.wikipedia.org/wiki/Brown_University
+Type	uni webpage
+
 author
 Name	Josiah Carberry
 E-mail	email@example.con
 Role	principal investigator
 ORCID	XXXYYY
+<affiliation>	o1
+
+author
+Name	Truman Grayson
+Role	submitter
+ORCID	ZZZAAA
 <affiliation>	o1
 
 organization	o1

@@ -198,6 +198,25 @@ def prune_empty(obj):
     return obj
 
 
+def is_comment_cell(value):
+    return isinstance(value, str) and value.strip().startswith("#")
+
+
+def row_starts_with_comment(row):
+    values = row.dropna()
+
+    if values.empty:
+        return False
+
+    return is_comment_cell(values.iloc[0])
+
+
+def remove_comment_rows_and_cells(df):
+    df = df[~df.apply(row_starts_with_comment, axis=1)]
+
+    return df.mask(df.apply(lambda column: column.map(is_comment_cell)))
+
+
 def build_container(study_path, im_path, ann_path):
     study_df = pd.read_csv(study_path)
     im_df = pd.read_csv(im_path)
@@ -206,15 +225,15 @@ def build_container(study_path, im_path, ann_path):
     data = {}
 
     # study
+    study_df = remove_comment_rows_and_cells(study_df)
     study_df = study_df.set_index(study_df.columns[0]).T
     study_df = study_df.reset_index().rename(columns={"index":"Study Title"})
-    study_df = study_df[~study_df.apply(lambda row: row.astype(str).str.startswith("#").any(), axis=1)]  # remove comments
 
     data.update(map_dataframe_to_dict(study_df, study_mapping))
     data.setdefault("study", {})["rembi_version"] = "1.5"
 
     # images
-    im_df = im_df[~im_df.apply(lambda row: row.astype(str).str.startswith("#").any(), axis=1)]  # remove comments
+    im_df = remove_comment_rows_and_cells(im_df)
     im_df.columns = im_df.columns.str.strip() # remove trailing spaces in column names
     
     # we will handle only one study component. If all fields are the same in the csv for a column, we will use that information.
@@ -262,7 +281,7 @@ def build_container(study_path, im_path, ann_path):
     component.setdefault("ontology_name", "")
 
     # annotations
-    ann_df = ann_df[~ann_df.apply(lambda row: row.astype(str).str.startswith("#").any(), axis=1)]  # remove comments
+    ann_df = remove_comment_rows_and_cells(ann_df)
     ann_df.columns = ann_df.columns.str.strip() # remove trailing spaces in column names
 
     # we will handle only one study component. If all fields are the same in the csv for a column, we will use that information.
