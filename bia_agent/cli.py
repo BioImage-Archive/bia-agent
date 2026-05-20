@@ -24,7 +24,6 @@ app = typer.Typer()
 class OutputFormat(str, Enum):
     TSV = 'tsv'
     JSON = 'json'
-    YAML = 'yaml'
 
 
 @app.command()
