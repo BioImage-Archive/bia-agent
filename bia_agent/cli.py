@@ -183,18 +183,19 @@ def mifa_to_pagetab(
 
 @app.command()
 def gigaem_to_pagetab(
+    study_path: pathlib.Path,
     im_path: pathlib.Path,
     ann_path: pathlib.Path,
-    study_path: pathlib.Path,
+    accession_id: str,
     outputFormat: Annotated[        
         OutputFormat,
         typer.Option("--format", "-f", help="Output format", case_sensitive=False)
     ] = OutputFormat.TSV,
 ):
 
-    rembi_mifa_container = build_container(im_path,ann_path,study_path)
+    rembi_mifa_container = build_container(study_path, im_path, ann_path)
 
-    bst_submission = rembi_mifa_container_to_pagetab(rembi_mifa_container, accession_id='S-BIADXXXX', root_path=None)
+    bst_submission = rembi_mifa_container_to_pagetab(rembi_mifa_container, accession_id=accession_id, root_path=None)
     
     if outputFormat == OutputFormat.TSV:
         print(bst_submission.as_tsv())
