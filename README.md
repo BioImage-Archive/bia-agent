@@ -26,7 +26,7 @@ Converting MIFA annotations YAML to PageTab
 
 Using poetry:
 
-    poetry run bia-agent rembi-mifa-to-pagetab examples/mifa-metadata.yaml S-BIADXXX
+    poetry run bia-agent mifa-to-pagetab examples/mifa-metadata.yaml S-BIADXXX
 
 Converting giga-EM spreadsheet to PageTab
 -------------------------------------------

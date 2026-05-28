@@ -456,7 +456,7 @@ def create_annotations_section(name: str, description: str, file_list_fname: str
 
     return annotations
 
-def mifa_annotations_to_pagetab_section(annotations: Annotations, version: Version, title: str, suffix=1) -> Section:
+def mifa_annotations_to_pagetab_section(annotations: Annotations, version: Optional[Version], title: str, suffix=1) -> Section:
 
     annotations_section = Section(
         type="Annotations",
@@ -479,8 +479,11 @@ def mifa_annotations_to_pagetab_section(annotations: Annotations, version: Versi
                 value=annotations.annotation_method
             )
         ],
-        subsections=[mifa_version_to_pagetab_section(version)]
+        subsections=[]
     )
+
+    if version is not None:
+        annotations_section.subsections.append(mifa_version_to_pagetab_section(version))
     
     append_if_not_none(annotations_section.attributes, "Annotation Confidence Level", annotations.annotation_confidence_level)
     append_if_not_none(annotations_section.attributes, "Annotation Criteria", annotations.annotation_criteria)

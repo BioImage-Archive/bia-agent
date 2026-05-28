@@ -1,5 +1,7 @@
 import pandas as pd
-from .rembi import REMBIContainer
+from pydantic import ValidationError
+
+from .rembi import REMBIContainer, REMBIValidationError
 
 study_mapping = {
     # simple fields (take first non-null value)
@@ -331,7 +333,10 @@ def build_container(study_path, im_path, ann_path):
 
     data = prune_empty(data) # remove some cases where there are empty cells
 
-    container = REMBIContainer.parse_obj(data)
+    try:
+        container = REMBIContainer.parse_obj(data)
+    except ValidationError as e:
+        raise REMBIValidationError(str(e)) from e
     
     return container
 

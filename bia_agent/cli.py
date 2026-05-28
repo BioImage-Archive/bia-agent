@@ -10,7 +10,7 @@ from .biostudies import Submission
 from .files import FileCollection
 from .submission import submission_from_dirpath, generate_bst_submission, generate_filelists
 from .transfer import copy_single_file, copy_all, verify
-from .rembi import parse
+from .rembi import REMBIValidationError, parse
 from .rembi2pagetab import rembi_container_to_pagetab
 from .mifa2pagetab import rembi_mifa_container_to_pagetab, mifa_container_to_pagetab
 from .gigaEM2pagetab import build_container
@@ -24,6 +24,11 @@ app = typer.Typer()
 class OutputFormat(str, Enum):
     TSV = 'tsv'
     JSON = 'json'
+
+
+def _exit_invalid_metadata(error):
+    typer.echo(f"Invalid metadata:\n{error}", err=True)
+    raise typer.Exit(code=1)
 
 
 @app.command()
@@ -134,9 +139,11 @@ def rembi_to_pagetab(
         typer.Option("--format", "-f", help="Output format", case_sensitive=False)
     ] = OutputFormat.TSV,
 ):
-    rembi_container = parse(rembi_fpath)
-
-    bst_submission = rembi_container_to_pagetab(rembi_container, accession_id=accession_id, root_path=None)
+    try:
+        rembi_container = parse(rembi_fpath)
+        bst_submission = rembi_container_to_pagetab(rembi_container, accession_id=accession_id, root_path=None)
+    except REMBIValidationError as e:
+        _exit_invalid_metadata(e)
 
     if outputFormat == OutputFormat.TSV:
         print(bst_submission.as_tsv())
@@ -153,9 +160,11 @@ def rembi_mifa_to_pagetab(
         typer.Option("--format", "-f", help="Output format", case_sensitive=False)
     ] = OutputFormat.TSV,
 ):
-    rembi_mifa_container = parse(rembi_mifa_fpath)
-
-    bst_submission = rembi_mifa_container_to_pagetab(rembi_mifa_container, accession_id=accession_id, root_path=None)
+    try:
+        rembi_mifa_container = parse(rembi_mifa_fpath)
+        bst_submission = rembi_mifa_container_to_pagetab(rembi_mifa_container, accession_id=accession_id, root_path=None)
+    except REMBIValidationError as e:
+        _exit_invalid_metadata(e)
     
     if outputFormat == OutputFormat.TSV:
         print(bst_submission.as_tsv())
@@ -171,9 +180,11 @@ def mifa_to_pagetab(
         typer.Option("--format", "-f", help="Output format", case_sensitive=False)
     ] = OutputFormat.TSV,
 ):
-    mifa_container = parse(mifa_fpath)
-
-    bst_submission = mifa_container_to_pagetab(mifa_container, accession_id=accession_id, root_path=None)
+    try:
+        mifa_container = parse(mifa_fpath)
+        bst_submission = mifa_container_to_pagetab(mifa_container, accession_id=accession_id, root_path=None)
+    except REMBIValidationError as e:
+        _exit_invalid_metadata(e)
     
     if outputFormat == OutputFormat.TSV:
         print(bst_submission.as_tsv())
@@ -192,9 +203,11 @@ def gigaem_to_pagetab(
     ] = OutputFormat.TSV,
 ):
 
-    rembi_mifa_container = build_container(study_path, im_path, ann_path)
-
-    bst_submission = rembi_mifa_container_to_pagetab(rembi_mifa_container, accession_id=accession_id, root_path=None)
+    try:
+        rembi_mifa_container = build_container(study_path, im_path, ann_path)
+        bst_submission = rembi_mifa_container_to_pagetab(rembi_mifa_container, accession_id=accession_id, root_path=None)
+    except REMBIValidationError as e:
+        _exit_invalid_metadata(e)
     
     if outputFormat == OutputFormat.TSV:
         print(bst_submission.as_tsv())
