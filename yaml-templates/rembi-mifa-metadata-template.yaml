@@ -71,8 +71,8 @@ annotations: # Optional section - Delete the whole section if not relevant
     annotation_coverage: # Optional # If the dataset is not completely annotated, which images from the dataset were annotated, and what percentage of the data has been annotated from what is available?
 version: # Optional section if no annotations section exists 
   Annotations: # Edit this according to the name used in the annotations section above
-    version: # Required # Unique version number for the annotations
-    timestamp: # Required # Date and time when the annotations version was created
+    version: # Optional # Unique version number for the annotations
+    timestamp: # Optional # Date and time when the annotations version was created
     changes: # Optional # Textual description of changes compared to previous version
     previous_version: # Optional # Pointer to previous annotations version
 study_component: # Add more study components by repeating the block below (change title to 'Study component 2', etc.). You will need an associations block (below) per study component

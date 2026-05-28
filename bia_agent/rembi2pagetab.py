@@ -1,7 +1,7 @@
 from typing import Optional
 
 from .biostudies import Attribute, Submission
-from .rembi import REMBIContainer
+from .rembi import REMBIContainer, validate_rembi_metadata
 from .utils import (rembi_study_to_pagetab_submission,
                     biosample_to_pagetab_section,
                     specimen_to_pagetab_section,
@@ -15,6 +15,7 @@ from .utils import (rembi_study_to_pagetab_submission,
 
 def rembi_container_to_pagetab(container: REMBIContainer, accession_id: Optional[str], root_path: Optional[str]) -> Submission:
     """Convert a REMBI Container object into a PageTab submission."""
+    validate_rembi_metadata(container)
 
     submission = rembi_study_to_pagetab_submission(container.study, template=ST_REMBI_TEMPLATE_VERSION, accession_id=accession_id)
 
@@ -39,8 +40,8 @@ def rembi_container_to_pagetab(container: REMBIContainer, accession_id: Optional
     )
 
     sc_section = [
-        study_component_to_pagetab_section(sc_object, a_object, suffix=n)
-        for n, ((sc_id, sc_object),(a_id, a_object)) in enumerate(zip(container.study_component.items(),container.associations.items()), start=1)
+        study_component_to_pagetab_section(sc_object, container.associations[sc_id], suffix=n)
+        for n, (sc_id, sc_object) in enumerate(container.study_component.items(), start=1)
     ]
 
     submission.section.subsections += sc_section

@@ -1,7 +1,7 @@
 from typing import Optional
 
 from .biostudies import Attribute, Submission
-from .rembi import REMBIContainer
+from .rembi import REMBIContainer, validate_mifa_metadata, validate_rembi_mifa_metadata
 
 from .utils import (rembi_study_to_pagetab_submission,
                     biosample_to_pagetab_section,
@@ -16,6 +16,7 @@ from .utils import (rembi_study_to_pagetab_submission,
 
 def rembi_mifa_container_to_pagetab(container: REMBIContainer, accession_id: Optional[str], root_path: Optional[str]) -> Submission:
     """Convert a REMBI + MIFA Container object into a PageTab submission."""
+    validate_rembi_mifa_metadata(container)
 
     submission = rembi_study_to_pagetab_submission(container.study, template=ST_MIFA_TEMPLATE_VERSION, accession_id=accession_id)
 
@@ -39,14 +40,23 @@ def rembi_mifa_container_to_pagetab(container: REMBIContainer, accession_id: Opt
     )
 
     ann_section = [
-        mifa_annotations_to_pagetab_section(annotations=ann_object, version=v_object, title=ann_id, suffix=n)
-        for n, ((ann_id, ann_object),(v_id, v_object)) in enumerate(zip(container.annotations.items(),container.version.items()), start=1)
+        mifa_annotations_to_pagetab_section(
+            annotations=ann_object,
+            version=container.version.get(ann_id),
+            title=ann_id,
+            suffix=n,
+        )
+        for n, (ann_id, ann_object) in enumerate(container.annotations.items(), start=1)
     ]
     submission.section.subsections += ann_section
 
     sc_section = [
-        study_component_to_pagetab_section(study_component=sc_object, associations=a_object, suffix=n)
-        for n, ((sc_id, sc_object),(a_id, a_object)) in enumerate(zip(container.study_component.items(),container.associations.items()), start=1)
+        study_component_to_pagetab_section(
+            study_component=sc_object,
+            associations=container.associations[sc_id],
+            suffix=n,
+        )
+        for n, (sc_id, sc_object) in enumerate(container.study_component.items(), start=1)
     ]
 
     submission.section.subsections += sc_section
@@ -55,6 +65,7 @@ def rembi_mifa_container_to_pagetab(container: REMBIContainer, accession_id: Opt
 
 def mifa_container_to_pagetab(container: REMBIContainer, accession_id: Optional[str], root_path: Optional[str]) -> Submission:
     """Convert a MIFA Container object into a PageTab submission."""
+    validate_mifa_metadata(container)
 
     submission = rembi_study_to_pagetab_submission(container.study, template=ST_MIFA_TEMPLATE_VERSION, accession_id=accession_id)
 
@@ -62,8 +73,13 @@ def mifa_container_to_pagetab(container: REMBIContainer, accession_id: Optional[
         submission.attributes.append(Attribute(name="RootPath", value=root_path))
 
     ann_section = [
-        mifa_annotations_to_pagetab_section(annotations=ann_object, version=v_object, title=ann_id, suffix=n)
-        for n, ((ann_id, ann_object),(v_id, v_object)) in enumerate(zip(container.annotations.items(),container.version.items()), start=1)
+        mifa_annotations_to_pagetab_section(
+            annotations=ann_object,
+            version=container.version.get(ann_id),
+            title=ann_id,
+            suffix=n,
+        )
+        for n, (ann_id, ann_object) in enumerate(container.annotations.items(), start=1)
     ]
     submission.section.subsections += ann_section
 
